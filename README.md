@@ -1,3 +1,7 @@
-# grupal
+# Learning Management System
 
-LMS Project
+Git Repo - [Group Project](https://github.com/gaositd/grupal)
+
+## Description
+
+Reactjs - nodejs express app involving a LMS.
