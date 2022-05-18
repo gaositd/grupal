@@ -23,6 +23,7 @@ const products = [
         description: 'Descripcion del producto 3',
         image: 'https://',
         category: 'Categoria 3',
+        score : 3,
         stock: 30
     },
     {   id: 4,
@@ -31,6 +32,7 @@ const products = [
         description: 'Descripcion del producto 4',
         image: 'https://',
         category: 'Categoria 4',
+        score : 2,
         stock: 40
     },
     {   id: 5,
@@ -39,6 +41,7 @@ const products = [
         description: 'Descripcion del producto 5',
         image: 'https://',
         category: 'Categoria 5',
+        score : 1,
         stock: 50
     },
     {   id: 6,
@@ -47,6 +50,7 @@ const products = [
         description: 'Descripcion del producto 6',
         image: 'https://',
         category: 'Categoria 6',
+        score : 4,
         stock: 60
     },
     {   id: 7,
@@ -55,6 +59,7 @@ const products = [
         description: 'Descripcion del producto 7',
         image: 'https://',
         category: 'Categoria 7',
+        score : 5,
         stock: 70
     },
     {   id: 8,
@@ -63,6 +68,7 @@ const products = [
         description: 'Descripcion del producto 8',
         image: 'https://',
         category: 'Categoria 8',
+        score : 3,
         stock: 80
     },
     {   id: 9,
@@ -71,6 +77,7 @@ const products = [
         description: 'Descripcion del producto 9',
         image: 'https://',
         category: 'Categoria 9',
+        score : 2,
         stock: 90
     },
     {   id: 10,
@@ -79,6 +86,7 @@ const products = [
         description: 'Descripcion del producto 10',
         image: 'https://',
         category: 'Categoria 10',
+        score : 1,
         stock: 100
     }
 ];
