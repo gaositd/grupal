@@ -4,9 +4,8 @@ module.exports = (sequelize) => {
 
   sequelize.define('category', {
      id: {
-      type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV4,
-      allowNull: false,
+      type: DataTypes.UUID,
+      defaulValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
     name: {
@@ -19,7 +18,8 @@ module.exports = (sequelize) => {
      image: {
       type: DataTypes.TEXT,
     },
-  },{
-    timestamps:true
+  },{timestamps: true,
+    createdAt: true,
+    updatedAt: false
   });
 };
