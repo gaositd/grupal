@@ -5,6 +5,7 @@ const products = [
         description: 'Descripcion del producto 1',
         image: 'https://',
         category: 'Categoria 1',
+        score : 4,
         stock: 10
     },
     {   id: 2,
@@ -13,6 +14,7 @@ const products = [
         description: 'Descripcion del producto 2',
         image: 'https://',
         category: 'Categoria 2',
+        score : 5,
         stock: 20
     },
     {   id: 3,
