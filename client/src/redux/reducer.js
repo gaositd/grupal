@@ -1,5 +1,5 @@
 import {
-
+    GET_SOMETHING
 } from "./actions"
 
 const initialState={
