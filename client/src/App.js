@@ -8,6 +8,8 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
 
+  console.log('Just trying something, if you see this you can delete it')
+
   
   const {pathname} = useLocation()
   return (
@@ -28,3 +30,5 @@ function App() {
 }
 
 export default App;
+
+//what happens if i add this line
