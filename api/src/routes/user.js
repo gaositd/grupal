@@ -14,25 +14,25 @@ router.get("/", async(req,res)=>{
 
 router.post("/", async(req,res)=>{
     const { 
-        usrname,
-        name,
-        birthdate,
-        phone,
-        image,
-        country,
-        mail,
-        password } = req.body;
+        NickName,
+        FullName,
+        Email,
+        Phone,
+        Image,
+        Address,
+        Birthdate,
+        Verify } = req.body;
 
     try {
         const user = await User.create({
-            usrname,
-            name,
-            birthdate,
-            phone,
-            image,
-            country,
-            mail,
-            password 
+            NickName,
+            FullName,
+            Email,
+            Phone,
+            Image,
+            Address,
+            Birthdate,
+            Verify
 
           });
 
@@ -44,5 +44,31 @@ router.post("/", async(req,res)=>{
     }
     
 })
+
+
+router.get("/User_login", async(req,res)=>{
+    const user_login = await User_loguin.findAll();
+    User_loguin.length ? res.json(User_loguin) : res.send("Incorret dates");
+})
+
+router.post("/User_loguin", async(req,res)=>{
+    const { Email,PassWord } = req.body;
+
+    try {
+        const user = await User_loguin.create({
+            Email,
+            PassWord
+
+          });
+
+
+          res.send('user created successfully');
+        
+    } catch (error) {
+        res.send(error)
+    }
+    
+})
+
 
 module.exports = router;
