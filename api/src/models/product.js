@@ -16,6 +16,10 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     ranking: {
       type: DataTypes.INTEGER,
       AllowNull: false,
