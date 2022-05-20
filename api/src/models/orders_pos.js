@@ -5,11 +5,13 @@ module.exports = (sequelize) => {
   sequelize.define('orderspos', {
     idOrdersHead: {
       type: DataTypes.UUID,
-      allowNull: false
+      allowNull: false,
+      primaryKey: true
     },
     position:{
         type:DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        primaryKey: true
     },
     idProduct:{
         type: DataTypes.UUID,
