@@ -4,15 +4,18 @@ const { v4: uuidv4 } = require("uuid");
 //const { getProduct, getProducts, createProduct, updateProduct, deleteProduct } = require("../controllers/product");
 const { Product } = require("../db.js");
 
-router.get("/", async (req, res, next) => {
-    console.log("getProducts");
-    res.send("getProducts");
-});
+// router.get("/", async (req, res, next) => {
+//     console.log("getProducts");
+//     res.send("getProducts");
+// });
 
 
 
 router.get("/:idProduct", async (req, res, next) => {
+    console.log(req.query);
+    console.log(req.params);
     const { idProduct } = req.params;
+
     try {
         if (idProduct) {
             console.log(idProduct)
@@ -21,7 +24,7 @@ router.get("/:idProduct", async (req, res, next) => {
                     id: idProduct
                 }
             });
-            console.log(product);
+            
             if (product) {
                 res.json(product);
             } else {
