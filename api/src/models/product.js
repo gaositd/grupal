@@ -12,34 +12,32 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    price: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-    },
     description: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    image: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    score: {
+    ranking: {
       type: DataTypes.INTEGER,
       AllowNull: false,
+    },
+    createBy: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    price: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+    },
+    categories: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     stock: {
       type: DataTypes.INTEGER,
       allowNull: true,
-    },
-    
+    }    
   }, {timestamps: true,
     createdAt: true,
     updatedAt: false
 });
 };
-
-
-
-
-  
