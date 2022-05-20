@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 
-  sequelize.define('category', {
+  sequelize.define('categories', {
      id: {
       type: DataTypes.UUID,
       defaulValue: DataTypes.UUIDV4,
@@ -11,13 +11,7 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    description: {
-      type: DataTypes.TEXT,
-    },
-     image: {
-      type: DataTypes.TEXT,
-    },
+    }
   },{timestamps: true,
     createdAt: true,
     updatedAt: false
