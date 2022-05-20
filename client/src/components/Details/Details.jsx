@@ -9,12 +9,11 @@ const product = {
   img: 'https://images.pexels.com/photos/9482552/pexels-photo-9482552.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
 }
 
-
 function Details() { // Should have as argument the ID of the product that is gonna be shown: function Details({id})
-
+  const id = 1; // Delete when ID comes as argument
   
   // const dispatch = useDispatch();
-  // const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   // useEffect(() => {
   //   async function newId(id) {

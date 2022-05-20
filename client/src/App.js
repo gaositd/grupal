@@ -29,7 +29,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Landing/>}/>
         <Route path='/home' element={<Home/>}/>
-        <Route path='/details' element={<Details id={id}/>}/>
+        <Route path='/details' element={<Details/>}/>
         {/* <Route pathelement={<NotFound/>}/> */}
       </Routes>
     </div>
