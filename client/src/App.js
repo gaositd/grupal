@@ -5,8 +5,8 @@ import { Routes, Route, useLocation } from "react-router-dom";
 // Hooks
 
 // Components
-import Landing from './components/Landing.jsx'
-import Home from './components/Home.jsx'
+import Landing from './components/Landing/Landing.jsx'
+import Home from './components/Home/Home.jsx'
 
 function App() {
 
