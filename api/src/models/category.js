@@ -13,10 +13,8 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     description: {
-      type: DataTypes.TEXT,
-    },
-     image: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   },{timestamps: true,
     createdAt: true,
