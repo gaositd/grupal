@@ -7,8 +7,20 @@ import { Routes, Route, useLocation } from "react-router-dom";
 // Components
 import Landing from './components/Landing/Landing.jsx'
 import Home from './components/Home/Home.jsx'
+import Details from './components/Details/Details';
 
 function App() {
+
+  /* To integrate with Catalogo 
+  const [loading, setLoading] = useState(false);
+  const [id, setId] = useState() // For Details
+
+  function handleDetails(id) {
+    setLoading(true)
+    setId(id)
+    setLoading(false)
+  } 
+  */
 
   const {pathname} = useLocation()
   return (
@@ -17,6 +29,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Landing/>}/>
         <Route path='/home' element={<Home/>}/>
+        <Route path='/details' element={<Details id={id}/>}/>
         {/* <Route pathelement={<NotFound/>}/> */}
       </Routes>
     </div>
