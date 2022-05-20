@@ -13,7 +13,7 @@ export function rootReducer(state = initialState, {type, payload}){
     case GET_SOMETHING:
       return {...state, something: payload}
     case GET_PRODUCT_ID:
-      return {...state, recipe: payload}
+      return {...state, productDet: payload}
     default: return state;
   }
 }
