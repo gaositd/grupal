@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/linux,windows,macos,node,react
-# Edit at https://www.toptal.com/developers/gitignore?templates=linux,windows,macos,node,react
+# Created by https://www.toptal.com/developers/gitignore/api/node,windows,macos,linux,react
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,windows,macos,linux,react
 
 ### Linux ###
 *~
@@ -196,7 +196,6 @@ dist
 **/*.back.*
 
 node_modules
-node_modules/
 
 *.sublime*
 
@@ -230,4 +229,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/linux,windows,macos,node,react
+# End of https://www.toptal.com/developers/gitignore/api/node,windows,macos,linux,react
