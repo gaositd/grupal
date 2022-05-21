@@ -2,8 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './ProductIndividualCard.module.css';
 
-function ProductIndividualCard(props) {
-    const { id, name, price, image, categories, ranking} = props;
+function ProductIndividualCard({
+    id,
+    name,
+    price,
+    image,
+    categories,
+    ranking
+}) {
 
     return (
         <>

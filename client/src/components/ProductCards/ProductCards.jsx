@@ -4,14 +4,14 @@ import ProductIndividualCard from '../ProductIndividualCard/ProductIndividualCar
 import Pagination from '../Pagination/Pagination'
 
 function ProductCards() {
- // UNCOMMENT WHEN REAL DATA COMES 
-
+    // UNCOMMENT WHEN REAL DATA COMES 
     // const products = useSelector(state => state.products);
 
     // useEffect(() => {
-        
+
     // }, [products]);
 
+    //MOCKED DATA
     const products = [
         {
             id_product: 1,
@@ -32,7 +32,7 @@ function ProductCards() {
             categories: 'Categoria 1',
             ranking: 4,
             stock: 10
-        }, 
+        },
         {
             id_product: 3,
             name: 'Producto 1',
@@ -42,7 +42,7 @@ function ProductCards() {
             categories: 'Categoria 1',
             ranking: 4,
             stock: 10
-        }, 
+        },
         {
             id_product: 4,
             name: 'Producto 1',
@@ -52,7 +52,7 @@ function ProductCards() {
             categories: 'Categoria 1',
             ranking: 4,
             stock: 10
-        }, 
+        },
         {
             id_product: 5,
             name: 'Producto 1',
@@ -62,7 +62,7 @@ function ProductCards() {
             categories: 'Categoria 1',
             ranking: 4,
             stock: 10
-        }, 
+        },
         {
             id_product: 6,
             name: 'Producto 1',
@@ -72,7 +72,7 @@ function ProductCards() {
             categories: 'Categoria 1',
             ranking: 4,
             stock: 10
-        }, 
+        },
         {
             id_product: 7,
             name: 'Producto 1',
@@ -82,7 +82,7 @@ function ProductCards() {
             categories: 'Categoria 1',
             ranking: 4,
             stock: 10
-        }, 
+        },
         {
             id_product: 8,
             name: 'Producto 1',
@@ -95,6 +95,7 @@ function ProductCards() {
         },
     ]
 
+    //PAGINATION
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage] = useState(3);
     const indexOfLastProduct = currentPage * productsPerPage;
@@ -104,32 +105,31 @@ function ProductCards() {
     };
     const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  return (
-      <div>
-        {currentProducts ? currentProducts.map(p => {
-            return (
-            <>
-            <h3>{p.id_product}</h3>
-            <ProductIndividualCard
-                id={p.id_product}
-                name={p.name}
-                price={p.price}
-                image={p.image}
-                categories={p.categories}
-                ranking={p.ranking}
-                key={p.id_product}
+    return (
+        <div>
+            {currentProducts ? currentProducts.map(p => {
+                return (
+                    <React.Fragment key={p.id_product}>
+                        <h3>Id de producto actual: {p.id_product}</h3>
+                        <ProductIndividualCard
+                            id={p.id_product}
+                            name={p.name}
+                            price={p.price}
+                            image={p.image}
+                            categories={p.categories}
+                            ranking={p.ranking}
+                        />
+                    </React.Fragment >
+                )
+            })
+                : ''}
+            <Pagination
+                productsPerPage={productsPerPage}
+                totalProducts={products.length}
+                paginate={paginate}
             />
-            </>
-            )
-        })
-        : ''}
-        <Pagination
-            productsPerPage={productsPerPage}
-            totalProducts={products.length}
-            paginate={paginate}
-        />
-      </div>
-  );
+        </div>
+    );
 };
-  
+
 export default ProductCards;
