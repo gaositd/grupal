@@ -203,6 +203,9 @@ psd
 thumb
 sketch
 
+# package-lock.json
+package-lock.json
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
