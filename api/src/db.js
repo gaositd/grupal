@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const DB_USER = 'postgres'
-const DB_PASSWORD = 'jRON0535!!!'
+const DB_PASSWORD = 'ONAI2105'
 const DB_HOST = 'localhost'
 const DB_NAME = 'marketplace'
 
