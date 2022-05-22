@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       allowNull:false,
     },
     type:{
-      type_dataType:DataTypes.STRING,
+      type:DataTypes.STRING,
       allowNull:false,
       comments:"type wishlist or sell shopping cart",
     }
