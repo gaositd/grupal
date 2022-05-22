@@ -1,8 +1,9 @@
-import axios from "axios"
+import axios from "axios";
 
-export const GET_SOMETHING = "GET_SOMETHING"
-export const GET_PRODUCT_ID = "GET_PRODUCT_ID"
-export const BY_NAME = "BY_NAME"
+export const GET_SOMETHING = "GET_SOMETHING";
+export const GET_PRODUCT_ID = "GET_PRODUCT_ID";
+export const BY_NAME = "BY_NAME";
+export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 
 export const getRecipes = (query) => {
     return function(dispatch){
@@ -33,3 +34,10 @@ export function byName(name) {
     }
   }
 }
+
+export function filterByCategory (category) {
+  return {
+    type: FILTER_BY_CATEGORY,
+    payload: category
+  };
+};
