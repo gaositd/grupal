@@ -2,7 +2,7 @@ const { Router } = require("express");
 const router = Router();
 const { v4: uuidv4 } = require("uuid");
 //const { getProduct, getProducts, createProduct, updateProduct, deleteProduct } = require("../controllers/product");
-const { Product } = require("../db.js");
+const { Product, Category } = require("../db.js");
 
 
 

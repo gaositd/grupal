@@ -62,8 +62,8 @@ router.post("/", async (req, res, next) => {
     //console.log(req.body);
     try {
         
-        const productCreated = await Product.findOrCreate({
-            where: {
+        const productCreated = await Product.create({
+            // where: {
                 id: uuidv4(),
                 name,
                 description,
@@ -71,18 +71,16 @@ router.post("/", async (req, res, next) => {
                 ranking,
                 createBy,
                 price,
-                category,
                 stock
                 
                 
-            }
+            // }
         })
         //res.send(productCreated);
         //res.send(productCreated[0].category);
-        await productCreated.setCategories(productCreated.category);
+        await productCreated.addCategories(category);
         
-        // console.log(productCreated);
-        // await productCreated[0].setCategories(category)
+       
         
     } catch (error) {
         
