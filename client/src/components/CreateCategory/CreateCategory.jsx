@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createCategory } from '../../redux/actions';
+import { validate } from '../../utils/validate';
 import styles from './CreateCategory.module.css'
 
 
@@ -8,18 +9,21 @@ function CreateCategory() {
   const dispatch = useDispatch();
 
   const [category, setCategory] = useState({})
+  const [errors, setErrors] = useState({});
 
   function handleChange(e) {
     let item = e.target.name
+
+    console.log('Errors: ',errors)
+    setErrors(validate({...category, [item]:e.target.value }))
     setCategory({...category, [item]:e.target.value})
   }
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log('Category: ',category)
-    // if(Object.keys(errors).length) {
-    //   return alert('The form is not right, please check')
-    // }
+    if(Object.keys(errors).length) {
+      return alert('The form is not right, please check')
+    }
     dispatch(createCategory(category))
     document.getElementById('createCategory').reset()
   }
@@ -33,6 +37,8 @@ function CreateCategory() {
           <input type="text" name='description' id='categoryDesciption' onChange={e => handleChange(e)}/>
           <input type="submit" value='Create Category'/>
         </form>
+        <br />
+        {errors.name && <h1>{errors.name}</h1>}
       </div>
   );
 };
