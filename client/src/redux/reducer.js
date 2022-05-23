@@ -1,5 +1,4 @@
 import {
-  GET_SOMETHING,
   GET_PRODUCT_ID,
   BY_NAME,
   FILTER_BY_CATEGORY,
@@ -14,9 +13,6 @@ const initialState={
 
 export function rootReducer(state = initialState, { type, payload }){
   switch (type) {
-    case GET_SOMETHING:
-      return {...state, something: payload}
-
     case GET_PRODUCT_ID:
       return {...state, productDet: payload}
 
