@@ -71,6 +71,7 @@ router.post("/", async (req, res, next) => {
                 ranking,
                 createBy,
                 price,
+                category,
                 stock
                 
                 
@@ -78,14 +79,14 @@ router.post("/", async (req, res, next) => {
         })
         //res.send(productCreated);
         //res.send(productCreated[0].category);
-        await productCreated.addCategories(category);
-        
+        // await productCreated.addCategories(category);
+        res.send('Created succesfully, saludos desde el BACK!!')
        
         
     } catch (error) {
         
     }
-    res.send('Created succesfully, saludos desde el BACK!!')
+    
 
     
 });
