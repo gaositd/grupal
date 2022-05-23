@@ -4,6 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 //const { getProduct, getProducts, createProduct, updateProduct, deleteProduct } = require("../controllers/product");
 const { Product } = require("../db.js");
 
+
 router.get("/", async (req, res, next) => {
     const getProduct = await Product.findAll();
     res.send(getProduct);
@@ -90,6 +91,8 @@ router.post("/", async (req, res, next) => {
     // res.send('Created succesfully, saludos desde el BACK!!')
 
     
+
+
 });
 
 router.get('/category/:category', async (req,res)=>{
@@ -118,6 +121,11 @@ router.get('/category/:category', async (req,res)=>{
   
   
   })
+
+
+
+
+
 
 
 module.exports = router;
