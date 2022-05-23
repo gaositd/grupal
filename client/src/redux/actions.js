@@ -50,3 +50,14 @@ export function filterByPrice (optionSelected) {
     payload: optionSelected
   };
 };
+
+export function createCategory(category) {
+  return function() {
+    alert('Waiting for BackEnd response')
+  }
+  // return function(){
+      // return axios.post("http://localhost:3001/category", category)
+          // .then(resp => console.log(resp))
+          // .catch(error => console.log('El error en cuestion: ',error))
+  // };
+};

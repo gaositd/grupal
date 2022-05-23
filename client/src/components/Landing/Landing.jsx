@@ -8,6 +8,7 @@ function Landing() {
     <div className={styles.landing}>
       <h1 className={styles.landingtitle}>Learning Management System - Project Name</h1>
       <NavLink className={styles.landingLinkHome} to='/home'>Enter the app</NavLink>
+      <NavLink className={styles.landingLinkAdmin} to='/admin'>Admin site</NavLink>
     </div>
   );
 };

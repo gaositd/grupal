@@ -8,6 +8,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Landing from './components/Landing/Landing.jsx'
 import Home from './components/Home/Home.jsx'
 import Details from './components/Details/Details';
+import CreateCategory from './components/CreateCategory/CreateCategory';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/' element={<Landing/>}/>
         <Route path='/home' element={<Home/>}/>
         <Route path='/details/:id' element={<Details/>}/>
+        <Route path='/admin' element={<CreateCategory/>}/>
         {/* <Route pathelement={<NotFound/>}/> */}
       </Routes>
     </div>
