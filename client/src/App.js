@@ -30,7 +30,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Landing/>}/>
         <Route path='/home' element={<Home/>}/>
-        <Route path='/details' element={<Details/>}/>
+        <Route path='/details/:id' element={<Details/>}/>
         <Route path='/admin' element={<CreateCategory/>}/>
         {/* <Route pathelement={<NotFound/>}/> */}
       </Routes>

@@ -8,6 +8,10 @@ module.exports = (sequelize) => {
       allowNull:false,
       primaryKey:true,
     },
+    id_user:{
+      type:DataTypes.UUID,
+      allowNull: false,
+    },
     id_product: {
       type:DataTypes.UUID,
       defaultValue:Sequelize.UUIDV4,
