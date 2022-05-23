@@ -4,10 +4,11 @@ const { v4: uuidv4 } = require("uuid");
 //const { getProduct, getProducts, createProduct, updateProduct, deleteProduct } = require("../controllers/product");
 const { Product } = require("../db.js");
 
-// router.get("/", async (req, res, next) => {
-//     console.log("getProducts");
-//     res.send("getProducts");
-// });
+
+router.get("/", async (req, res, next) => {
+    const getProduct = await Product.findAll();
+    res.send(getProduct);
+});
 
 
 
@@ -62,8 +63,8 @@ router.post("/", async (req, res, next) => {
     //console.log(req.body);
     try {
         
-        const productCreated = await Product.create({
-            // where: {
+        const productCreated = await Product.findOrCreate({
+            where: {
                 id: uuidv4(),
                 name,
                 description,
@@ -75,20 +76,56 @@ router.post("/", async (req, res, next) => {
                 stock
                 
                 
-            // }
+            }
         })
-        //res.send(productCreated);
+        res.send(productCreated);
         //res.send(productCreated[0].category);
-        // await productCreated.addCategories(category);
-        res.send('Created succesfully, saludos desde el BACK!!')
-       
+        await productCreated.setCategories(productCreated.category);
+        
+        // console.log(productCreated);
+        // await productCreated[0].setCategories(category)
         
     } catch (error) {
         
     }
-    
+    // res.send('Created succesfully, saludos desde el BACK!!')
 
     
+
+
 });
+
+router.get('/category/:category', async (req,res)=>{
+    const {category} = req.params;
+  
+    const products = await Product.findAll();
+  
+    
+  
+    try {
+        const productByCategory =
+        products.filter((p)=>{
+            const productFilter = p;
+            categoryFilter = productFilter.category
+            if(categoryFilter.includes(category)) return productFilter;
+        }) 
+    
+    
+    res.json(productByCategory)
+        
+    } catch (error) {
+        res.send(error)
+        
+    }
+  
+  
+  
+  })
+
+
+
+
+
+
 
 module.exports = router;
