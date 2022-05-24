@@ -2,7 +2,7 @@ const { Router } = require("express");
 const router = Router();
 const { v4: uuidv4 } = require("uuid");
 //const { getProduct, getProducts, createProduct, updateProduct, deleteProduct } = require("../controllers/product");
-const { Product } = require("../db.js");
+const { Product, Category } = require("../db.js");
 
 
 
@@ -29,12 +29,12 @@ router.get("/:idCategory", async (req, res, next) => {
 //________________________________________________________________//
 
 router.post("/", async (req, res, next) => {
-    let {name, description} = req.body;
+    let {id, name, description} = req.body;
     try {
         console.log(req.body);
         const categoryCreated = await Category.findOrCreate({
             where: {
-                id: uuidv4(),
+                id,
                 name,
                 description
              
