@@ -29,12 +29,12 @@ router.get("/:idCategory", async (req, res, next) => {
 //________________________________________________________________//
 
 router.post("/", async (req, res, next) => {
-    let {name, description} = req.body;
+    let {id, name, description} = req.body;
     try {
         console.log(req.body);
         const categoryCreated = await Category.findOrCreate({
             where: {
-                id: uuidv4(),
+                id,
                 name,
                 description
              
