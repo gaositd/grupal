@@ -9,6 +9,8 @@ import Landing from './components/Landing/Landing.jsx'
 import Home from './components/Home/Home.jsx'
 import Details from './components/Details/Details';
 import CreateCategory from './components/CreateCategory/CreateCategory';
+import NavBarBro from './components/NavBarBro/NavBarBro';
+import NavBar from './components/NavBar/NavBar';
 
 function App() {
 
@@ -26,7 +28,7 @@ function App() {
   const {pathname} = useLocation()
   return (
     <div className="App">
-      {/* {pathname === '/'?null:<Nav/>} */}
+      {pathname === '/'?null:<NavBar/>}
       <Routes>
         <Route path='/' element={<Landing/>}/>
         <Route path='/home' element={<Home/>}/>
