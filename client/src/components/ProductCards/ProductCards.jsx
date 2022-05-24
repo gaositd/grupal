@@ -5,13 +5,18 @@ import Pagination from '../Pagination/Pagination'
 
 function ProductCards() {
     // UNCOMMENT WHEN REAL DATA COMES 
-    // const products = useSelector(state => state.products);
+
+    // const allProducts = useSelector(state => state.products);
+    // const filteredProducts = useSelector(state => state.filteredProducts);
 
     // useEffect(() => {
 
-    // }, [products]);
+    // }, [products, filteredProducts]);
+    // const products;
+    // filteredProducts.length ? products = filteredProducts : products = allProducts;
 
-    //MOCKED DATA
+    //MOCKED DATA - COMMENT WHEN REAL DATA COMES 
+    
     const products = [
         {
             id_product: 1,
