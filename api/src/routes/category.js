@@ -4,6 +4,15 @@ const router = Router();
 const { Category } = require("../db.js");
 
 
+router.get('/',async(req,res)=>{
+  const category = await Category.findAll();
+  try {
+    category? res.json(category):res.send("there are no categories")
+    
+  } catch (error) {
+    res.send(error)
+  }
+})
 
 
 router.get("/:idCategory", async (req, res, next) => {
