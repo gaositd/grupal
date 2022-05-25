@@ -2,10 +2,13 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config();
+
 // const DB_USER = 'postgres'
 // const DB_PASSWORD = 'ONAI2105'
 // const DB_HOST = 'localhost'
 // const DB_NAME = 'marketplace'
+
 
 // console.log(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`);
 // const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
