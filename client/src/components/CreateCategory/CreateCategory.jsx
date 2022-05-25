@@ -21,7 +21,7 @@ function CreateCategory() {
   console.log(category)
   function handleSubmit(e) {
     e.preventDefault()
-    if(Object.keys(errors).length) {
+    if(Object.keys(errors).length || !Object.keys(category).length) {
       return alert('The form is not right, please check')
     }
     dispatch(createCategory(category))
@@ -29,18 +29,20 @@ function CreateCategory() {
   }
 
   return (
-      <div>
-        <form id='createCategory' onSubmit={e => handleSubmit(e)}>
+      <div className={styles.container}>
+        <form className={styles.lilcontainer} id='createCategory' onSubmit={e => handleSubmit(e)}>
           <label>Category id: </label>
-          <input type="text" name='id' id='categoryId' onChange={e => handleChange(e)}/>
+          <input class={styles.dalebro} type="text" name='id' id='categoryId' onChange={e => handleChange(e)}/>
           <label>Category name: </label>
-          <input type="text" name='name' id='categoryName' onChange={e => handleChange(e)}/>
+          <input class={styles.dalebro} type="text" name='name' id='categoryName' onChange={e => handleChange(e)}/>
           <label>Description: </label>
-          <input type="text" name='description' id='categoryDesciption' onChange={e => handleChange(e)}/>
-          <input type="submit" value='Create Category'/>
+          <input class={styles.dalebro} type="text" name='description' id='categoryDesciption' onChange={e => handleChange(e)}/>
+          <input class={styles.create} type="submit" value='Create Category'/>
         </form>
         <br />
+        {errors.id && <h1>{errors.id}</h1>}
         {errors.name && <h1>{errors.name}</h1>}
+        {errors.description && <h1>{errors.description}</h1>}
       </div>
   );
 };

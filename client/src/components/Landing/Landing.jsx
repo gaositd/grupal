@@ -37,6 +37,11 @@ function Landing() {
               Enter the app
             </div>
           </NavLink>
+          <NavLink to='/admin'>
+            <div className="border-2 w-40 border-red-900 rounded-xl mt-20">
+              Access as admin
+            </div>
+          </NavLink>
         </div>
         <div className="p-16 text-xs absolute inset-x-0 bottom-0">
           <p>
