@@ -24,26 +24,25 @@ export function rootReducer(state = initialState, { type, payload }){
       return {...state, products: payload}
 
     case FILTER_BY_CATEGORY:
-        let filteredProducts = state.products.filter(p => p.categories.includes(payload));
-        return { ...state, filteredProducts: filteredProducts }
+        let filteredProd = state.products.filter(p => p.categories.includes(payload));
+        return { ...state, filteredProducts: filteredProd }
 
     case FILTER_BY_PRICE:
       {
-        let filteredProducts;
+        let aux = []
+        let filtProducts
+        state.products.forEach(element => aux.push(element))
+        console.log('esto es aux: ',aux)
         if (payload === 'highest') {
-          filteredProducts = state.products.sort((a, b) => {
-            return parseFloat(b.price) - parseFloat(a.price)
-          });
+          filtProducts = aux.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
         };
         if (payload === 'lowest') {
-          filteredProducts = state.products.sort((a, b) => {
-            return parseFloat(a.price) - parseFloat(b.price);
-          });
+          filtProducts = aux.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
         };
         if(payload === 'all') {
-          filteredProducts = state.products;
+          filtProducts = aux;
         }
-        return { ...state, filteredProducts }
+        return { ...state, filteredProducts: filtProducts }
       }
 
     default: return state;
