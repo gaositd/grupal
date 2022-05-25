@@ -8,12 +8,10 @@ function Filters() {
 
     const handleSelectCategory = (e) => {
         dispatch(filterByCategory(e.target.value))
-        console.log('select');
     }
 
     const handleSelectPrice = (e) => {
         dispatch(filterByPrice(e.target.value))
-        console.log('select');
     }
 
     const categories = ['Carpinteria', 'Programacion'];

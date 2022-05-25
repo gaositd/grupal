@@ -18,7 +18,6 @@ function CreateCategory() {
     setCategory({...category, [item]:e.target.value})
   }
 
-  console.log(category)
   function handleSubmit(e) {
     e.preventDefault()
     if(Object.keys(errors).length) {
