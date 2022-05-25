@@ -24,12 +24,8 @@ export function rootReducer(state = initialState, { type, payload }){
       return {...state, products: payload}
 
     case FILTER_BY_CATEGORY:
-      {
-        let filteredProducts = state.products.filter(p => {
-          return p.category.includes(payload);
-        });
-        return { ...state, filteredProducts }
-      }
+        let filteredProducts = state.products.filter(p => p.categories.includes(payload));
+        return { ...state, filteredProducts: filteredProducts }
 
     case FILTER_BY_PRICE:
       {
