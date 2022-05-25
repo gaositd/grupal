@@ -5,6 +5,9 @@ export const GET_PRODUCT_ID = "GET_PRODUCT_ID";
 export const BY_NAME = "BY_NAME";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
+export const GET_CATEGORIES = "GET_CATEGORIES";
+export const PAGINATION = "PAGINATION";
+
 
 export const getProducts = () => {
   return function(dispatch){
@@ -58,5 +61,21 @@ export function createCategory(category) {
       return axios.post("http://localhost:3001/category", category)
           .then(alert('Category created successfully!'))
           .catch(error => console.log('El error en cuestion: ',error))
+  };
+};
+
+export const getCategories = () => {
+  return function(dispatch){
+    return axios.get(`http://localhost:3001/category`)
+      .then(resp => dispatch({type: GET_CATEGORIES, payload: resp.data}))
+      .catch(error => alert(error))
+  }
+}
+
+
+export const pagination = (pageNumber) => {
+  return {
+      type: PAGINATION,
+      payload: pageNumber
   };
 };

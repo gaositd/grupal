@@ -2,17 +2,20 @@ import React from 'react';
 import ProductCards from '../ProductCards/ProductCards';
 import Filters from '../Filters/Filters';
 import Search from '../Search/Search';
-// import styles from './Home.module.css'
+import styles from './Home.module.css'
 
 
 function Home() {
 
   return (
-      <>
-        <Search/>
-        <Filters/>
-        <ProductCards/>
-      </>
+    <>
+      <div className={styles.background}>
+        <Search />
+        <Filters />
+        <ProductCards />
+
+      </div>
+    </>
   );
 };
   

@@ -20,12 +20,12 @@ function NavBar() {
                 className={(url === '/home') ? style.mainActive : style.main}
             >Catalog
             </NavLink>
-
-            <NavLink
+            
+            {/* <NavLink
                 to='/home'
                 className={(url === '/home') ? style.createActive : style.create}
             >Cart
-            </NavLink>
+            </NavLink> */}
         </div>
     );
 };
