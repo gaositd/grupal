@@ -14,11 +14,11 @@ function CreateCategory() {
   function handleChange(e) {
     let item = e.target.name
 
-    console.log('Errors: ',errors)
     setErrors(validate({...category, [item]:e.target.value }))
     setCategory({...category, [item]:e.target.value})
   }
 
+  console.log(category)
   function handleSubmit(e) {
     e.preventDefault()
     if(Object.keys(errors).length) {
@@ -31,6 +31,8 @@ function CreateCategory() {
   return (
       <div>
         <form id='createCategory' onSubmit={e => handleSubmit(e)}>
+          <label>Category id: </label>
+          <input type="text" name='id' id='categoryId' onChange={e => handleChange(e)}/>
           <label>Category name: </label>
           <input type="text" name='name' id='categoryName' onChange={e => handleChange(e)}/>
           <label>Description: </label>
