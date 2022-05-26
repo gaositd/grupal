@@ -30,13 +30,13 @@ function ProductCards() {
     }, [holeState, filteredProducts]);
    
     return (
-        <div>
+        <div className="grid grid-cols-3 gap-4 w-full justify-items-center">
             {currentProducts ? currentProducts.map((p, i) => {
                 return (
                     <React.Fragment key={i}>
                         {/* <h3>Id de producto actual: {p.id_product}</h3> */}
                         <ProductIndividualCard
-                            id={p.id_product}
+                            id={p.id}
                             name={p.name}
                             price={p.price}
                             image={p.image}
@@ -47,7 +47,8 @@ function ProductCards() {
                 )
             })
                 : ''}
-            <Pagination
+                <br></br>
+            <Pagination 
                 productsPerPage={productsPerPage}
                 totalProducts={products.length}
                 paginate={paginate}

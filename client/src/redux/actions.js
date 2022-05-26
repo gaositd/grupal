@@ -18,15 +18,11 @@ export const getProducts = () => {
 }
 
 export const getProductById = (id) => {
-  const product = { // Delete this product once api response is raised
-    title: 'Test title',
-    price: '$15000000',
-    img: 'https://images.pexels.com/photos/9482552/pexels-photo-9482552.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+  return function(dispatch){
+    return axios.get(`http://localhost:3001/product/${id}`)
+      .then(resp => dispatch({type: GET_PRODUCT_ID, payload: resp.data}))
+      .catch(error => alert(error))
   }
-  return {
-    type: GET_PRODUCT_ID,
-    payload: product
-  };
   // return function(dispatch){
   //   return axios.get(`http://localhost:3001/*BACK ROUTE PENDING*/${id}`)
   //     .then(resp => dispatch({type: GET_PRODUCT_ID, payload: resp.data}))

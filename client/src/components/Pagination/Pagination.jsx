@@ -7,7 +7,8 @@ function Pagination({ productsPerPage, totalProducts, paginate }) {
         pageNumbers.push(i);
     };
     return (
-        <nav className={style.container}>
+        <div className="w-full justify-items-center">
+<nav className={style.container}>
             <ul className={style.pageList}>
                 {pageNumbers.map(number => {
                     return (
@@ -26,6 +27,8 @@ function Pagination({ productsPerPage, totalProducts, paginate }) {
                 })}
             </ul>
         </nav>
+        </div>
+        
     )
 }
 
