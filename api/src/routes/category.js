@@ -1,15 +1,21 @@
 const { Router } = require("express");
 const router = Router();
-const { v4: uuidv4 } = require("uuid");
 //const { getProduct, getProducts, createProduct, updateProduct, deleteProduct } = require("../controllers/product");
-const { Product, Category } = require("../db.js");
+const { Category } = require("../db.js");
 
-
+router.get('/',async(req,res)=>{
+  const category = await Category.findAll();
+  try {
+    category? res.json(category):res.send("there are no categories")
+    
+  } catch (error) {
+    res.send(error)
+  }
+})
 
 
 router.get("/:idCategory", async (req, res, next) => {
     try {
-        //const category = await Category.findByPk(req.params.idProduct);
         const category = await Category.findOne({
             where: {
                 id: req.params.idCategory
@@ -26,26 +32,53 @@ router.get("/:idCategory", async (req, res, next) => {
         next(error);
     }
 });
-//________________________________________________________________//
+// ________________________________________________________________//
 
-router.post("/", async (req, res, next) => {
-    let {id, name, description} = req.body;
+router.post("/", async(req,res)=>{
+    const { 
+        id,
+        name,
+        description} = req.body;
+
     try {
-        console.log(req.body);
-        const categoryCreated = await Category.findOrCreate({
-            where: {
-                id,
-                name,
-                description
-             
-            }
-        })
-        res.send(categoryCreated);
-       
-    } catch (error) {
+        const newCategory = await Category.create({
+          id,
+          name,
+          description,
+        });
+
+
+          res.send(newCategory);
         
+    } catch (error) {
+        res.send(error)
     }
     
-});
+})
+
+router.put("/update/:id", async (req, res) => {
+    const { id } = req.params;
+    console.log(id)
+    const {name, description }= req.body;
+    let categoryUpdated = await Category.findOne({
+      where: { id: id },
+    });
+    await categoryUpdated.update({
+        name,
+        description 
+    });
+
+    res.send("category updated.");
+  });
+  
+  router.delete("/delete/:id", async (req, res) => {
+    const { id } = req.params;
+    await Category.destroy({
+      where: {
+        id: id,
+      },
+    });
+    res.status(200).send("category deleted.");
+  });
 
 module.exports = router;

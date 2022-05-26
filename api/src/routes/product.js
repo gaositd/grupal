@@ -5,7 +5,10 @@ const { Op } = require("sequelize");
 //const { getProduct, getProducts, createProduct, updateProduct, deleteProduct } = require("../controllers/product");
 const { Product, Category } = require("../db.js");
 
-
+router.get("/", async (req, res, next) => {
+    const getProduct = await Product.findAll();
+    res.send(getProduct);
+});
 
 
 // La consulta para productos debe ser:
@@ -150,8 +153,8 @@ router.post("/", async (req, res, next) => {
     console.log('REQ.Body Productos :',req.body);
     try {
         
-        const productCreated = await Product.create({
-            // where: {
+        const productCreated = await Product.findOrCreate({
+            where: {
                 id: uuidv4(),
                 name,
                 description,
@@ -162,14 +165,13 @@ router.post("/", async (req, res, next) => {
                 stock
                 
                 
-            // }
+            }
         })
         
         // console.log('DATOS DEL PRODUCTO a CREAR',productCreated);
         await productCreated.addCategories(categories);
         res.json(productCreated);
 
-        
         
     } catch (error) {
         res.send(error)
@@ -181,6 +183,7 @@ router.post("/", async (req, res, next) => {
 
 
 });
+
 
 
 module.exports = router;
