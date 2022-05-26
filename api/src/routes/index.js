@@ -5,7 +5,7 @@ const { Router } = require('express');
 const router = Router();
 const Product = require('./product.js');
 const User = require('./user.js');
-const Category = require('./category.js');
+
 
 
 
@@ -19,6 +19,7 @@ router.use('/user', User);
 router.use('/', (req, res) => {
     res.send('APP is running');
 })
+
 
 
 
