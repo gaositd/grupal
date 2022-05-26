@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import style from './ProductIndividualCard.module.css';
 
 function ProductIndividualCard({
     id,
@@ -11,24 +10,22 @@ function ProductIndividualCard({
     ranking
 }) {
 
+    const imageName ='../../img_products/' + image + '.jpg';
+
+    console.log(id)
     return (
         <>
-            <div className={style.container}>
-                <div className={style.cardContainer}>
-                    <div className={style.imgContainer}>
-                        <img src={image} alt={name} className={style.image} />
-                    </div>
-                    <div className={style.info}>
-                        <h1>{name}</h1>
-                        <h3>{categories}</h3>
-                        <p>price: {price}</p>
-                        <p>ranking: {ranking}</p>
-                        <NavLink
-                            to={`/details/${id}`}
-                            className={style.detailLink}
-                        >See more details
-                        </NavLink>
-                    </div>
+            <div className="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden my-10">
+                <div className="px-4 py-2">
+                    <h1 className="text-gray-900 font-bold text-3xl uppercase">{name}</h1>
+                    <p className="text-gray-600 text-sm mt-1">{categories}</p>
+                </div>
+                <img className="h-56 w-full object-cover mt-2" src={imageName} alt='asd' />
+                <div className="flex items-center justify-between px-4 py-2 bg-amber-700">
+                    <h1 className="text-gray-200 font-bold text-xl">${price} - Ranking: {ranking}</h1>
+                    <NavLink to={`/details/${id}`}>
+                    <div className="px-3 py-1 bg-gray-200 text-sm text-gray-900 font-semibold rounded">Details</div>
+                    </NavLink>
                 </div>
             </div>
         </>

@@ -14,6 +14,16 @@ router.get('/',async(req,res)=>{
 })
 
 
+router.get('/', async (req, res) => {
+  const category = await Category.findAll();
+  try {
+    category ? res.json(category) : res.send("there are no categories")
+
+  } catch (error) {
+    res.send(error)
+  }
+})
+
 router.get("/:idCategory", async (req, res, next) => {
     try {
         const category = await Category.findOne({
@@ -80,5 +90,7 @@ router.put("/update/:id", async (req, res) => {
     });
     res.status(200).send("category deleted.");
   });
+
+
 
 module.exports = router;

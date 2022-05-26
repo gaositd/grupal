@@ -4,7 +4,6 @@
 const { Router } = require('express');
 const router = Router();
 const Product = require('./product.js');
-const Category = require('./category.js');
 const User = require('./user.js');
 
 

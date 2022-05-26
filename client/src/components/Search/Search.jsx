@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { byName } from '../../redux/actions.js'
+import style from './Search.module.css'
 
 const Search = () => {
     const dispatch = useDispatch()
@@ -16,9 +17,8 @@ const Search = () => {
 
     return (
         <div>
-            <p>Input to search by name: </p>
-            <input type="text" placeholder="Search" onChange={e => handleChange(e)} />
-            <button onClick={handleClick}>Buscar</button>
+            <input type="text" placeholder="Search by name" onChange={e => handleChange(e)} className={style.inp} />
+            <button onClick={handleClick} className={style.btn}>Buscar</button>
         </div>
     )
 }
