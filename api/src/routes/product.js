@@ -142,8 +142,16 @@ router.get('/category/:category', async (req,res)=>{
 
 router.post("/", async (req, res, next) => {
     let {name, description, image, ranking, createBy, price, categories, stock} = req.body;
-        
-    console.log('REQ.Body Productos :',req.body);
+    const searchDbNames = await Product.findAll({
+        where: {
+          name: { [Op.iLike]: `%${name}%` },
+        },
+        include: Category,
+      });    
+    // console.log('REQ.Body Productos :',searchDbNames);
+    
+    if(searchDbNames === null){
+
     try {
         
         const productCreated = await Product.create({
@@ -171,6 +179,10 @@ router.post("/", async (req, res, next) => {
         // res.send(error)
         console.log('ERROR :',error);
     }
+    }else{
+        res.send('El producto ya existe');
+    }
+
     // res.send('Created succesfully, saludos desde el BACK!!')
 
     
