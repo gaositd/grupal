@@ -5,10 +5,7 @@ const { Op } = require("sequelize");
 //const { getProduct, getProducts, createProduct, updateProduct, deleteProduct } = require("../controllers/product");
 const { Product, Category } = require("../db.js");
 
-router.get("/", async (req, res, next) => {
-    const getProduct = await Product.findAll();
-    res.send(getProduct);
-});
+
 
 
 // La consulta para productos debe ser:
@@ -103,10 +100,7 @@ router.get("/:idProduct", async (req, res, next) => {
 
 router.get('/category/:category', async (req,res)=>{
     const {category} = req.params;
-  
     const products = await Product.findAll();
-  
-    
   
     try {
         const productByCategory =
@@ -115,9 +109,8 @@ router.get('/category/:category', async (req,res)=>{
             categoryFilter = productFilter.category
             if(categoryFilter.includes(category)) return productFilter;
         }) 
-    
-    
-    res.json(productByCategory)
+   
+        res.json(productByCategory)
         
     } catch (error) {
         res.send(error)
@@ -153,8 +146,8 @@ router.post("/", async (req, res, next) => {
     console.log('REQ.Body Productos :',req.body);
     try {
         
-        const productCreated = await Product.findOrCreate({
-            where: {
+        const productCreated = await Product.create({
+            // where: {
                 id: uuidv4(),
                 name,
                 description,
@@ -165,7 +158,7 @@ router.post("/", async (req, res, next) => {
                 stock
                 
                 
-            }
+            // }
         })
         
         // console.log('DATOS DEL PRODUCTO a CREAR',productCreated);
@@ -173,9 +166,10 @@ router.post("/", async (req, res, next) => {
         res.json(productCreated);
 
         
-    } catch (error) {
-        res.send(error)
         
+    } catch (error) {
+        // res.send(error)
+        console.log('ERROR :',error);
     }
     // res.send('Created succesfully, saludos desde el BACK!!')
 
@@ -185,9 +179,10 @@ router.post("/", async (req, res, next) => {
 });
 
 
-
 module.exports = router;
-
+//-----------------------------------------------------------
+//  ESTE CODIGO ES DE RESPALDO Y PRUEBAS - NO TOCAR
+//-----------------------------------------------------------
 
 // router.get("/", async (req, res, next) => {
 //     const getProduct = await Product.findAll({
