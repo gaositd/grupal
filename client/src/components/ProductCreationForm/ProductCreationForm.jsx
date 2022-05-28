@@ -91,8 +91,8 @@ function ProductCreationForm() {
                 alert("Product created succesfully");
                 console.log(input)
                 //CORREGIR CON NUEVAS ACTIONS
-                // dispatch(createProduct(input));
-                // dispatch(getProducts());
+                dispatch(createProduct(input));
+                dispatch(getProducts());
                 // e.target.reset();
                 // window.location.href = '/home';
             } catch (err) {
@@ -193,6 +193,9 @@ export const validate = function (input) {
     // };
     if (!input.createBy || input.createBy.length < 3) {
         errors.createBy = 'The creator of the course is mandatory information.';
+
+    } else if (/["`'#%&,:;<>=@{}~$()*+/?[\]^|]+/.test(input.createBy)) {
+        errors.createBy = 'The course name can not contain special characters.';
     };
     if (!input.price || typeof input.price !== 'number' || input.price < 0) {
         errors.price = 'The price of the course must be completed with the $0.00 USD format.';
