@@ -1,6 +1,6 @@
 import React, { useEffect, } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories, createProduct, getProducts  } from '../../redux/actions';
+import { getCategories, createProduct, getProducts } from '../../redux/actions';
 import style from './ProductCreationForm.module.css';
 
 function ProductCreationForm() {
@@ -22,26 +22,47 @@ function ProductCreationForm() {
         name: '',
         description: '',
         image: '',
-        ranking: 0,
-        price: 0,
+        ranking: null,
+        price: null,
         categories: [],
-        stock: 0,
+        stock: null,
     });
 
     useEffect(() => {
-        if(!allCategories.length){
+        if (!allCategories.length) {
             dispatch(getCategories())
         };
-    }, [dispatch]);
+    }, [dispatch, allCategories.length]);
 
     const handleInputChange = function (e) {
+        let data;
+        if (e.target.name === 'ranking') {
+            data = Number(e.target.value)
+        }
+        if (e.target.name === 'stock') {
+            if (/^[0-9]{0,2}$/.test(e.target.value)) {
+                data = Number(e.target.value)
+            }
+        }
+        if (e.target.name === 'price') {
+            if (e.target.value.length >= 4) {
+                if ((/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(e.target.value))) {
+                    data = parseFloat(e.target.value);
+                } else {
+                    setErrors(validate({
+                        ...input,
+                        [e.target.name]: e.target.value
+                    }))
+                }
+            }
+        }
         setInput({
             ...input,
-            [e.target.name]: e.target.value
+            [e.target.name]: (data === 0 || data) ? data : e.target.value
         });
         setErrors(validate({
             ...input,
-            [e.target.name]: e.target.value
+            [e.target.name]: (data === 0 || data) ? data : e.target.value
         }));
     };
 
@@ -65,23 +86,23 @@ function ProductCreationForm() {
 
     const handleSubmit = function (e) {
         e.preventDefault();
-        console.log(input)
-        // if (Object.keys(errors).length === 0) {
-        //     try {
-        //         alert("Product created succesfully");
-        //         //CORREGIR CON NUEVAS ACTIONS
-                dispatch(createProduct(input));
-        //         dispatch(getProducts());
-        //         e.target.reset();
-        //         window.location.href = '/home';
-        //     } catch (err) {
-        //         console.log(err);
-        //     }
-        // } else {
-        //     alert('All the mandatory fields are not filled');
-        // };
+        if (Object.keys(errors).length === 0) {
+            try {
+                alert("Product created succesfully");
+                console.log(input)
+                //CORREGIR CON NUEVAS ACTIONS
+                // dispatch(createProduct(input));
+                // dispatch(getProducts());
+                // e.target.reset();
+                // window.location.href = '/home';
+            } catch (err) {
+                console.log(err.message);
+            }
+        } else {
+            alert('All the mandatory fields are not filled');
+        };
     };
-
+    console.log(errors, input)
     return (
         <div className={style.mainContainer}>
             <h2 className={style.title}>Create your course</h2>
@@ -90,7 +111,7 @@ function ProductCreationForm() {
                 <form onSubmit={handleSubmit} className={style.for}>
                     <div className={style.fromNameToGenres}>
                         <label>Course name:</label>
-                        <input name="name" onChange={handleInputChange} placeholder="Product's name"/>
+                        <input name="name" onChange={handleInputChange} placeholder="Product's name" />
                         <span>{errors.name}</span><br />
 
                         <label>Description:</label>
@@ -103,7 +124,7 @@ function ProductCreationForm() {
                         <span>{errors.description}</span><br />
 
                         <label>Image:</label>
-                        <input name="image" onChange={handleInputChange} placeholder="URL Image"/>
+                        <input name="image" onChange={handleInputChange} placeholder="URL Image" />
                         <span>{errors.image}</span><br />
 
                         <label>Ranking:</label>
@@ -121,7 +142,7 @@ function ProductCreationForm() {
                         <label>Vacancies:</label>
                         <input name="stock" onChange={handleInputChange} placeholder="Stock available" />
                         <span>{errors.stock}</span><br />
-                        
+
                         <label>Categories:</label>
                         <span className={style.asd}>{errors.gGenres}</span>
                     </div>
@@ -153,32 +174,32 @@ function ProductCreationForm() {
 
 export const validate = function (input) {
     let errors = {};
-    // if (!input.name || input.name.length < 2 || typeof input.name !== 'string') {
-    //     errors.name = 'The videogame name must be at least 2 characters';
-    // } else if (/["`'#%&,:;<>=@{}~$()*+/?[\]^|]+/.test(input.name)) {
-    //     errors.name = 'The videogame name can not contain special characters';
+    if (!input.name || input.name.length < 2 || typeof input.name !== 'string') {
+        errors.name = 'The course name must be at least 2 characters long.';
+    } else if (/["`'#%&,:;<>=@{}~$()*+/?[\]^|]+/.test(input.name)) {
+        errors.name = 'The course name can not contain special characters.';
+    };
+    if (input.description.length < 10) {
+        errors.description = 'The description must be at least 10 characters long.';
+    };
+    if (!input.ranking || input.ranking > 5 || input.ranking < 0 || input.ranking % 1 !== 0 || typeof input.ranking !== 'number') {
+        errors.ranking = 'The ranking must be a integer between 0 and 5.';
+    };
+    if (input.categories.length < 1) {
+        errors.categories = 'The curse must have at least one category.';
+    };
+    // if (input.image) {
+    //     errors.image = 'XXXXXXXXX';
     // };
-    // if (input.description.length < 10) {
-    //     errors.description = 'The description must be at least 10 characters long';
-    // };
-    // if (!/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/.test(input.releaseDate)) {
-    //     errors.releaseDate = 'The release date must be in the format YYYY-MM-DD';
-    // };
-    // if ((input.rating > 5) || (input.rating < 0) || /^(?:[1-9]\d{0,4}|0)\.\d$/.test(input.rating)) {
-    //     errors.rating = 'The rating must be a number not greater than 5, and with at least two decimals';
-    // };
-    // if (input.gGenres.length < 1) {
-    //     errors.gGenres = 'The videogame must have at least one genre';
-    // };
-    // if (input.platforms.length < 1) {
-    //     errors.platforms = 'The videogame must have at least one platform';
-    // };
-    // if (input.gGenres.length < 1) {
-    //     errors.gGenres = 'At least one genre must be selected';
-    // };
-    // if (input.platforms.length < 1) {
-    //     errors.platforms = 'At least one platform must be selected';
-    // };
+    if (!input.createBy || input.createBy.length < 3) {
+        errors.createBy = 'The creator of the course is mandatory information.';
+    };
+    if (!input.price || typeof input.price !== 'number' || input.price < 0) {
+        errors.price = 'The price of the course must be completed with the $0.00 USD format.';
+    };
+    if (!input.stock || typeof input.stock !== 'number') {
+        errors.stock = 'The course should have at least one vacancy.';
+    };
     return errors;
 };
 

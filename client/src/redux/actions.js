@@ -79,18 +79,9 @@ export const pagination = (pageNumber) => {
 
 export function createProduct(product) {
   return function (dispatch) {
-    let productData = {
-      ...product,
-      ranking:Number(product.ranking),
-      price:Number(product.price),
-      stock:Number(product.stock),
-      // categories: product.categories.map(ctgry => {
-      //   return JSON.parse(ctgry);
-      // }
-      // )
-    }
+    console.log(product)
     try {
-      return axios.post("http://localhost:3001/product", productData)
+      return axios.post("http://localhost:3001/product", product)
         .then(res => {
           dispatch({
             type: CREATE_PRODUCT,
