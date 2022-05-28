@@ -88,13 +88,10 @@ function ProductCreationForm() {
         e.preventDefault();
         if (Object.keys(errors).length === 0) {
             try {
-                alert("Product created succesfully");
-                console.log(input)
-                //CORREGIR CON NUEVAS ACTIONS
                 dispatch(createProduct(input));
                 dispatch(getProducts());
-                // e.target.reset();
-                // window.location.href = '/home';
+                e.target.reset();
+                window.location.href = '/home';
             } catch (err) {
                 console.log(err.message);
             }
