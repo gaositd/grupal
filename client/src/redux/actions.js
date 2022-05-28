@@ -7,6 +7,7 @@ export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const GET_CATEGORIES = "GET_CATEGORIES";
 export const PAGINATION = "PAGINATION";
+export const CREATE_PRODUCT = "CREATE_PRODUCT";
 
 
 export const getProducts = () => {
@@ -73,5 +74,32 @@ export const pagination = (pageNumber) => {
   return {
       type: PAGINATION,
       payload: pageNumber
+  };
+};
+
+export function createProduct(product) {
+  return function (dispatch) {
+    let productData = {
+      ...product,
+      ranking:Number(product.ranking),
+      price:Number(product.price),
+      stock:Number(product.stock),
+      // categories: product.categories.map(ctgry => {
+      //   return JSON.parse(ctgry);
+      // }
+      // )
+    }
+    try {
+      return axios.post("http://localhost:3001/product", productData)
+        .then(res => {
+          dispatch({
+            type: CREATE_PRODUCT,
+            payload: res.data
+          })
+        }).catch(error => { alert(error.message) })
+    }
+    catch (err) {
+      alert(err.message)
+    };
   };
 };
