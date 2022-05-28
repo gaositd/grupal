@@ -1,4 +1,4 @@
-const { Product, Category } = require("../db.js");
+const { Product, Category, User, Review } = require("../db.js");
 const { v4: uuidv4, validate } = require("uuid");
 
 const productsdb = [
@@ -10,6 +10,7 @@ const productsdb = [
         createBy:"alejandro sanchez",
         price: 9,
         category: ["2"],
+        user: ["2"],
         stock: 60
     },
     {   id: uuidv4(),
@@ -20,6 +21,7 @@ const productsdb = [
         createBy:"fernando herrera",
         price: 10,
         category: ["2"],
+        user: ["2","1","3"],
         stock: 60
     },
     {   id: uuidv4(),
@@ -30,6 +32,7 @@ const productsdb = [
         createBy:"juan toro",
         price: 10,
         category: ["2"],
+        user: ["2","1","3"],
         stock: 60
     },
     {   id: uuidv4(),
@@ -40,6 +43,7 @@ const productsdb = [
         createBy:"alejandro sanchez",
         price: 9,
         category: ["2"],
+        user: ["1"],
         stock: 60
     },
     {   id: uuidv4(),
@@ -50,6 +54,7 @@ const productsdb = [
         createBy:"alan mancera",
         price: 11,
         category: ["2"],
+        user: ["3"],
         stock: 60
     },
     {   id: uuidv4(),
@@ -60,6 +65,7 @@ const productsdb = [
         createBy:"hector guzman",
         price: 10,
         category: ["2"],
+        user: ["2"],
         stock: 60
     },
     {   id: uuidv4(),
@@ -70,6 +76,7 @@ const productsdb = [
         createBy:"guillermo gracia",
         price: 8,
         category: ["2"],
+        user: ["2","1","3"],
         stock: 60
     },
     {   id: uuidv4(),
@@ -80,6 +87,7 @@ const productsdb = [
         createBy:"delimar reyes",
         price: 8,
         category: ["2"],
+        user: ["2","1","3"],
         stock: 60
     },
     {   id: uuidv4(),
@@ -90,6 +98,7 @@ const productsdb = [
         createBy:"fernando herrera",
         price: 11,
         category: ["2"],
+        user: ["3"],
         stock: 60
     },
     {   id: uuidv4(),
@@ -100,6 +109,7 @@ const productsdb = [
         createBy:"fernando herrera",
         price: 11,
         category: ["2"],
+        user: ["2","1","3"],
         stock: 60
     },
     {   id: uuidv4(),
@@ -110,6 +120,7 @@ const productsdb = [
         createBy:"marlon ceballos",
         price: 11,
         category: ["1"],
+        user: ["3"],
         stock: 60
     },
     {   id: uuidv4(),
@@ -120,6 +131,7 @@ const productsdb = [
         createBy:"miguel soto",
         price: 11,
         category: ["1"],
+        user: [],
         stock: 60
     },
     {   id: uuidv4(),
@@ -130,6 +142,7 @@ const productsdb = [
         createBy:"joel combes",
         price: 11,
         category: ["1"],
+        user: [],
         stock: 60
     },
     {   id: uuidv4(),
@@ -140,6 +153,7 @@ const productsdb = [
         createBy:"diego davila",
         price: 11,
         category: ["1","2"],
+        user: [],
         stock: 60
     },
     {   id: uuidv4(),
@@ -150,6 +164,7 @@ const productsdb = [
         createBy:"odin fernandez",
         price: 11,
         category: ["1"],
+        user: [],
         stock: 60
     },
     {   id: uuidv4(),
@@ -160,6 +175,7 @@ const productsdb = [
         createBy:"camilo barboza",
         price: 8,
         category: ["3"],
+        user: [],
         stock: 60
     },
     {   id: uuidv4(),
@@ -170,6 +186,7 @@ const productsdb = [
         createBy:"jose mark",
         price: 11,
         category: ["3"],
+        user: [],
         stock: 60
     },
     {   id: uuidv4(),
@@ -180,6 +197,7 @@ const productsdb = [
         createBy:"german hernandez",
         price: 11,
         category: ["4"],
+        user: [],
         stock: 60
     },
     {   id: uuidv4(),
@@ -190,6 +208,7 @@ const productsdb = [
         createBy:"jose sosa",
         price: 8,
         category: ["4"],
+        user: [],
         stock: 60
     },
     {   id: uuidv4(),
@@ -200,6 +219,7 @@ const productsdb = [
         createBy:"sandra burgos",
         price: 8,
         category: ["5"],
+        user: [],
         stock: 60
     },
     {   id: uuidv4(),
@@ -210,6 +230,7 @@ const productsdb = [
         createBy:"guillermo camino",
         price: 8,
         category: ["6"],
+        user: [],
         stock: 60
     },
     {   id: uuidv4(),
@@ -220,6 +241,7 @@ const productsdb = [
         createBy:"alvaro perez",
         price: 8,
         category: ["7"],
+        user: [],
         stock: 60
     },
     {   id: uuidv4(),
@@ -230,6 +252,7 @@ const productsdb = [
         createBy:"rodolfo rodriguez",
         price: 8,
         category: ["8"],
+        user: [],
         stock: 60
     },
 ];
@@ -277,6 +300,72 @@ const productsdb = [
     },
 ]
 
+const userdb = [
+    {
+        id: "1",
+        nickName:'sedwarb',
+        fullName:'edwar sebrian',
+        mail:'sedwarb@gmail.com',
+        phone:'+583206707858',
+        address:'cali',
+        birthdate:'26/08/1980',
+        country:'venezuela',
+        verify:true
+    },
+    {
+        id: "2",
+        nickName:'mariano',
+        fullName:'carlos mariano',
+        mail:'mariano@gmail.com',
+        phone:'+5492613343474',
+        address:'n/a',
+        birthdate:'n/a',
+        country:'argentina',
+        verify:true
+    },
+    {
+        id: "3",
+        nickName:'felipe',
+        fullName:'felipe de la paz',
+        mail:'felipe@gmail.com',
+        phone:'+56951592718',
+        address:'n/a',
+        birthdate:'n/a',
+        country:'chile',
+        verify:true
+    }
+]
+
+const reviewdb =[
+    {
+        description:"mala calidad, no comprar",
+        ranking:1,
+        userId:3,
+        productId:5
+    },
+    {
+        description:"excelente, recomendado",
+        ranking:5,
+        userId:1,
+        productId:2
+    },
+]
+
+function chargeusers(){
+    User.bulkCreate(userdb)
+}
+
+async function chargereviews(){
+    try{
+        await Review.create({
+            description:"buen producto",
+            ranking:5,
+            userId:1,
+            productId:1
+        })
+    }catch(error){console.log(`Error: ${error}`)}
+}
+
 function chargecategories(){
     Category.bulkCreate(categoriesdb)
 }
@@ -284,7 +373,7 @@ function chargecategories(){
 function chargeproducts(){
     productsdb.forEach(async (product)=>{
         const productCreated = await Product.create({
-            id:product.id,
+            id:uuidv4(),
             name:product.name,
             description:product.description,
             image:product.image,
@@ -294,10 +383,31 @@ function chargeproducts(){
             stock:product.stock
         })
         await productCreated.addCategories(product.category);
+        await productCreated.addUsers(product.user);
     })    
+}
+
+async function createReview(req,res){
+    try{
+        if(req.body.reviewDescription!==false){
+            await Review.create({
+            description:req.body.reviewDescription,
+            ranking:req.body.reviewRanking,
+            userId:req.body.userId,
+            productId:req.body.productId
+        })
+        res.json("Se creo el review")        
+        }
+    }catch(error){
+        res.send(`Error: ${error}`)
+    }
+    
 }
 
 module.exports= {
     chargecategories,
-    chargeproducts
+    chargeproducts,
+    chargeusers,
+    chargereviews,
+    createReview
 }
