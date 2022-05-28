@@ -142,15 +142,15 @@ router.get('/category/:category', async (req,res)=>{
 
 router.post("/", async (req, res, next) => {
     let {name, description, image, ranking, createBy, price, categories, stock} = req.body;
-    const searchDbNames = await Product.findAll({
+    const searchDbNames = await Product.findOne({
         where: {
           name: { [Op.iLike]: `%${name}%` },
         },
         include: Category,
       });    
-    // console.log('REQ.Body Productos :',searchDbNames);
+    console.log('REQ.Body Productos :',searchDbNames);
     
-    if(searchDbNames === null){
+    if(!searchDbNames){
 
     try {
         
