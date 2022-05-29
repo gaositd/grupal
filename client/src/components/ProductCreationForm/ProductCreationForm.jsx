@@ -113,7 +113,7 @@ function ProductCreationForm() {
 
                         <label>Description:</label>
                         <textarea
-                            placeholder="What`s the game about"
+                            placeholder="What`s the course about"
                             name="description"
                             onChange={handleInputChange}
                             rows='3'
