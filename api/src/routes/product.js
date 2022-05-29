@@ -26,9 +26,9 @@ router.get("/:idProduct", async (req, res, next) => {
         try {
             if (idProduct) {
                 const product = await Product.findByPk(idProduct,{
-                    include: [{model:Category},{model:Review}]
+                    include: [{model:Category},{model:User},{model:Review}]
                 });
-                const { id, name, description, image, ranking, createBy, price, stock, categories,reviews } = product;
+                const { id, name, description, image, ranking, createBy, price, stock, categories, users, reviews} = product;
                 const response = {
                     id,
                     name,
@@ -43,9 +43,11 @@ router.get("/:idProduct", async (req, res, next) => {
                         return {
                             description:review.description,
                             ranking:review.ranking,
-                            userId:review.userId
+                            userId:review.userId,
+                            nickName:users.filter(user=>user.id===review.userId)[0].nickName   
                         }
-                    })
+                    }
+                    )
                 }
                 res.json(response);
             } else {
