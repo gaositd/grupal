@@ -94,7 +94,11 @@ export function logout() {
 export function signUp(user) {
   return function(){
       return axios.post("http://localhost:3001/user/signup", user)
-          .then(alert('User created successfully!'))
+          .then(resp => {
+            console.log(resp)
+            if(typeof(resp.data) === 'string') alert(resp.data)
+            else alert('Welcome to our platform')
+          })
           .catch(error => console.log('El error en cuestion: ',error))
   };
 };
