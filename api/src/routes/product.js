@@ -171,16 +171,15 @@ router.post("/", async (req, res, next) => {
         
         // console.log('DATOS DEL PRODUCTO a CREAR',productCreated);
         await productCreated.addCategories(categories);
-        res.json(productCreated);
-
-        
+        res.status(201).send('Creado Exitosamente');
+    
         
     } catch (error) {
         // res.send(error)
-        console.log('ERROR :',error);
+        console.log('ERROR :',error.message);
     }
     }else{
-        res.send('El producto ya existe');
+        res.status(304).send('Error de creacion');
     }
 
     // res.send('Created succesfully, saludos desde el BACK!!')
