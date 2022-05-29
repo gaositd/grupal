@@ -5,14 +5,17 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_BY_PRICE,
   GET_CATEGORIES,
-  PAGINATION
+  PAGINATION,
+  LOGIN,
+  LOGOUT
 } from "./actions"
 
 const initialState={
   products: [],
   filteredProducts: [],
   productDet: {},
-  pagination: 0
+  pagination: 0,
+  loggedUser: {}
 }
 
 export function rootReducer(state = initialState, { type, payload }){
@@ -37,22 +40,29 @@ export function rootReducer(state = initialState, { type, payload }){
       return {...state, pagination: payload}
 
     case FILTER_BY_PRICE:
-      {
-        let aux = []
-        let filtProducts
-        state.products.forEach(element => aux.push(element))
-        console.log('esto es aux: ',aux)
-        if (payload === 'highest') {
-          filtProducts = aux.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-        };
-        if (payload === 'lowest') {
-          filtProducts = aux.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-        };
-        if(payload === 'all') {
-          filtProducts = aux;
-        }
-        return { ...state, filteredProducts: filtProducts }
+    {
+      let aux = []
+      let filtProducts
+      state.products.forEach(element => aux.push(element))
+      if (payload === 'highest') {
+        filtProducts = aux.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      };
+      if (payload === 'lowest') {
+        filtProducts = aux.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      };
+      if(payload === 'all') {
+        filtProducts = aux;
       }
+      return { ...state, filteredProducts: filtProducts }
+    }
+
+    case LOGIN:
+      if(Object.keys(payload).length) alert('Successfull login!')
+      if(!Object.keys(payload).length) alert('Wrong password')
+      return {...state, loggedUser: payload}
+
+    case LOGOUT:
+      return {...state, loggedUser: {}}
 
     default: return state;
   }
