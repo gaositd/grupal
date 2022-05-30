@@ -46,6 +46,7 @@ function Landing() {
   function handleLogout(e) {
     e.preventDefault()
     dispatch(logout())
+    localStorage.removeItem("user")
   }
 
   return (
@@ -58,7 +59,7 @@ function Landing() {
 
           {/* Login form */}
           <div>
-            {!Object.keys(loggedUser).length?
+            {!localStorage.getItem("user")?
             <Login/>
             :<button className="box-border w-40 bg-amber-500 text-white p-2 rounded-xl" onClick={handleLogout}>
               Logout
@@ -77,12 +78,12 @@ function Landing() {
           </NavLink>
           <br />
           <br />
-          <NavLink to='/admin'>
-            <div className="border-2 w-40 border-red-900 rounded-xl">
+          <NavLink to='/home' className="border-2 w-40 border-red-900 rounded-xl">
               Admin site
-            </div>
           </NavLink>
         </div>
+        <br />
+        <br />
         <div className="p-16 text-xs absolute inset-x-0 bottom-0">
           <p>
             © 2022 Henry Part Time 04. Copyrights belongs to humanity...
