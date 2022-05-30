@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const { userInfo } = require('os');
 const DB_USER = 'postgres'
 const DB_PASSWORD = 'ONAI2105'
 const DB_HOST = 'localhost'
@@ -53,6 +54,10 @@ const { Category, Product, User } = sequelize.models;
 
 Product.belongsToMany(Category, { through: "productTOcategory" });
 Category.belongsToMany(Product, { through: "productTOcategory" });
+
+User.hasOne()
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
