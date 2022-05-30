@@ -189,64 +189,48 @@ router.post("/", async (req, res, next) => {
 
 });
 
+router.put('/update/:idProduct',async (req, res) => {
+    const {idProduct}   = req.params;
+    const {name, description, image, ranking, createBy, price, categories, stock} = req.body;
+    let updateProduct = await Product.findOne({
+        where :{
+            id: idProduct,
+        }
+    })
+    await updateProduct.update({
+        name,
+        description,
+        image,
+        ranking,
+        createBy,
+        price,
+        stock
+
+    })
+    await updateProduct.setCategories(categories)
+    res.send('Producto modificado ');
+})
+
+router.delete('/delete/:idProduct',async (req, res)=> {
+const { idProduct } = req.params;
+await Product.destroy({
+    where :{ id: idProduct},
+    include: Category,
+})
+res.status(200).send('Producto borrado');
+
+})
+
+
+
 
 module.exports = router;
 //-----------------------------------------------------------
 //  ESTE CODIGO ES DE RESPALDO Y PRUEBAS - NO TOCAR
 //-----------------------------------------------------------
 
-// router.get("/", async (req, res, next) => {
-//     const getProduct = await Product.findAll({
-//         include: Category,
-
-//     });
-//     let finalProduct = getProduct.map(product => {
-//         return {
-//             id: product.id,
-//             name: product.name,
-//             description: product.description,
-//             image: product.image,
-//             ranking: product.ranking,
-//             createdBy: product.createdBy,
-//             price: product.price,
-//             stock: product.stock,
-//             categories: product.categories.map(category => category.name),
-//         }
-//     });
-//     res.send(finalProduct);
-// });
 
 
 
 
-//-----------------------------------
-// module.exports = {
-//     createVideogame: async function (req, res) {
-//         try {
-//             let genres = await Genre.findAll();
-//             if (genres.length === 0) { await axios.get('http://localhost:3001/genres%27)'};
-//             let { name, description, releaseDate, rating, gGenres, platforms } = req.body;
-//             if (!name, !description, !gGenres, !platforms) return res.status(404).send('Mandatory fields are missing');
-//             let groupedPlatforms = platforms.join(', ');
-//             await Videogame.create({
-//                 name,
-//                 description,
-//                 releaseDate,
-//                 rating,
-//                 platforms: groupedPlatforms
-//             });
-//             const createdGame = await Videogame.findOne({
-//                 where: {
-//                     name: name
-//                 }
-//             });
-//             let genresParsed = gGenres.map(g => JSON.parse(g));
-//             const addedGenre = await genresParsed.map(g => createdGame.addGenre(g.id));
-//             await Promise.all(addedGenre);
-//             res.status(201).send('Game created successfully');
-//         } catch (error) {
-//             console.log(error.message);
-//         };
-    
-//     }
-// }
+
