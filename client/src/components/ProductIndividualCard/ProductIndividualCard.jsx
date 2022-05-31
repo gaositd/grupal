@@ -25,10 +25,10 @@ function ProductIndividualCard({
         });
 
         if (!exist) {
-        prodCart.push(addcar);
-        localStorage.setItem(`cartProduct`, JSON.stringify(prodCart));
-        console.log(prodCart);
-        }else if (exist) {
+            prodCart.push(addcar);
+            localStorage.setItem(`cartProduct`, JSON.stringify(prodCart));
+            console.log(prodCart);
+        } else if (exist) {
             alert('Producto ya existe en el carrito');
         }
     }

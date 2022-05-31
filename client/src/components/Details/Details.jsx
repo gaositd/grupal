@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getProductById } from '../../redux/actions';
 
-import styles from './Details.module.css'
+// import styles from './Details.module.css'
 
 function Details() {
   const { id } = useParams();

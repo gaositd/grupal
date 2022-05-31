@@ -5,6 +5,7 @@ const { Op } = require("sequelize");
 //const { getProduct, getProducts, createProduct, updateProduct, deleteProduct } = require("../controllers/product");
 
 const { Product, Category, User, Review } = require("../db.js");
+const { createReview } = require('../controllers/controllers')
 
 
 
