@@ -9,8 +9,8 @@ import Landing from './components/Landing/Landing.jsx'
 import Home from './components/Home/Home.jsx'
 import Details from './components/Details/Details';
 import CreateCategory from './components/CreateCategory/CreateCategory';
-import NavBarBro from './components/NavBarBro/NavBarBro';
 import NavBar from './components/NavBar/NavBar';
+import ProductCreationForm from './components/ProductCreationForm/ProductCreationForm'
 
 function App() {
 
@@ -34,6 +34,7 @@ function App() {
         <Route path='/home' element={<Home/>}/>
         <Route path='/details/:id' element={<Details/>}/>
         <Route path='/admin' element={<CreateCategory/>}/>
+        <Route path='/creationform' element={<ProductCreationForm/>}/>
         {/* <Route pathelement={<NotFound/>}/> */}
       </Routes>
     </div>

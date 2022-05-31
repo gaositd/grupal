@@ -5,14 +5,16 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_BY_PRICE,
   GET_CATEGORIES,
-  PAGINATION
+  PAGINATION,
+  CREATE_PRODUCT,
 } from "./actions"
 
 const initialState={
   products: [],
   filteredProducts: [],
   productDet: {},
-  pagination: 0
+  pagination: 0,
+  categories: [],
 }
 
 export function rootReducer(state = initialState, { type, payload }){
@@ -53,6 +55,9 @@ export function rootReducer(state = initialState, { type, payload }){
         }
         return { ...state, filteredProducts: filtProducts }
       }
+    
+    case CREATE_PRODUCT:
+      return state
 
     default: return state;
   }
