@@ -2,6 +2,7 @@
 const { Sequelize, DataTypes} = require("sequelize");
 
 module.exports = (sequelize) => {
+<<<<<<< HEAD
   sequelize.define('user',{
     id:{
       type:DataTypes.STRING,
@@ -15,6 +16,14 @@ module.exports = (sequelize) => {
     },
     usertype:{
       type:DataTypes.STRING,
+=======
+  
+  sequelize.define('user', {
+    id: {
+      type: DataTypes.STRING,
+      //type: DataTypes.UUID,
+      //defaultValue: Sequelize.UUIDV4,
+>>>>>>> Feat-Products-Reviews
       allowNull: false,
     },
     nickName: {    //2
