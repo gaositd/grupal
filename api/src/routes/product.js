@@ -4,7 +4,7 @@ const { v4: uuidv4, validate } = require("uuid");
 const { Op } = require("sequelize");
 //const { getProduct, getProducts, createProduct, updateProduct, deleteProduct } = require("../controllers/product");
 const { Product, Category } = require("../db.js");
-
+const {createReview}=require('../controllers/controllers')
 
 
 
@@ -24,9 +24,9 @@ router.get("/:idProduct", async (req, res, next) => {
         try {
             if (idProduct) {
                 const product = await Product.findByPk(idProduct,{
-                    include: Category,
+                    include: [{model:Category},{model:User},{model:Review}]
                 });
-                const { id, name, description, image, ranking, createBy, price, stock, categories } = product;
+                const { id, name, description, image, ranking, createBy, price, stock, categories, users, reviews} = product;
                 const response = {
                     id,
                     name,
@@ -37,7 +37,16 @@ router.get("/:idProduct", async (req, res, next) => {
                     price,
                     stock,
                     categories: categories.map(category => category.name),
+                    reviews: reviews.map(review => {
+                        return {
+                            description:review.description,
+                            ranking:review.ranking,
+                            userId:review.userId,
+                            nickName:users.filter(user=>user.id===review.userId)[0].nickName   
+                        }
                     }
+                    )
+                }
                 res.json(response);
             } else {
                 res.send("idProduct is required");
@@ -139,6 +148,8 @@ router.get('/category/:category', async (req,res)=>{
 //     "stock":"10"
 //   }
   
+//para hacer post de reviews se debe colocar localhost:3001/product/review
+router.post("/review", createReview)
 
 router.post("/", async (req, res, next) => {
     let {name, description, image, ranking, createBy, price, categories, stock} = req.body;
