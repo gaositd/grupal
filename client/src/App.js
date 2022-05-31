@@ -9,7 +9,6 @@ import Landing from './components/Landing/Landing.jsx'
 import Home from './components/Home/Home.jsx'
 import Details from './components/Details/Details';
 import CreateCategory from './components/CreateCategory/CreateCategory';
-import NavBarBro from './components/NavBarBro/NavBarBro';
 import NavBar from './components/NavBar/NavBar';
 import { useSelector } from 'react-redux';
 
@@ -24,15 +23,15 @@ function App() {
   if(localStorage.getItem("user") === 'santi@mail.com') {
     return (
       <div className="App">
-      {pathname === '/'?null:<NavBar/>}
-      <Routes>
-        <Route path='/' element={<Landing/>}/>
-        <Route path='/home' element={<Home/>}/>
-        <Route path='/details/:id' element={<Details/>}/>
-        <Route path='/admin' element={<CreateCategory/>}/>
-        {/* <Route pathelement={<NotFound/>}/> */}
-      </Routes>
-    </div>
+        {pathname === '/'?null:<NavBar/>}
+        <Routes>
+          <Route path='/' element={<Landing/>}/>
+          <Route path='/home' element={<Home/>}/>
+          <Route path='/details/:id' element={<Details/>}/>
+          <Route path='/admin' element={<CreateCategory/>}/>
+          {/* <Route pathelement={<NotFound/>}/> */}
+        </Routes>
+      </div>
     )
   }
 

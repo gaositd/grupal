@@ -16,7 +16,6 @@ router.post("/signup", async(req,res)=>{
             where: {email },
             defaults: {email, password }
         })
-        console.log('User and created: ',user,created)
         if(created) res.json(user)
         else res.send('Email already in use')
     } catch (error) {
