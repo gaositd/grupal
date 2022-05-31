@@ -3,6 +3,9 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const { userInfo } = require('os');
+const { DB_USER ,DB_PASSWORD ,DB_HOST,DB_NAME,DB_DIALECT } = process.env;
+
+
 /*
 const DB_USER = 'postgres'
 const DB_PASSWORD = 'ONAI2105'
@@ -17,6 +20,7 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
   }
 );*/
+console.log(DB_NAME, DB_USER, DB_PASSWORD,DB_HOST,DB_DIALECT)
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
   dialect: process.env.DB_DIALECT/* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
@@ -49,7 +53,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Category, Product, User, Review, User_product } = sequelize.models;
+const { Category, Product, User, Review, User_product, OrdersHead } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
