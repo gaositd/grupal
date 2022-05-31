@@ -55,7 +55,6 @@ const { Category, Product, User } = sequelize.models;
 Product.belongsToMany(Category, { through: "productTOcategory" });
 Category.belongsToMany(Product, { through: "productTOcategory" });
 
-User.hasOne()
 
 
 
