@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector, } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getCategories, getProducts, login, logout, signUp } from '../../redux/actions';
 
 import bgimage from "./bg_landing.jpg";
@@ -10,9 +10,7 @@ import Signup from './Authentication/Signup';
 function Landing() {
   const dispatch = useDispatch();
 
-  // const [userLogin, setUserLogin] = useState({email: '', password: ''})
-  // const [userSignup, setUserSignup] = useState({email: '', password: ''})
-  const loggedUser = useSelector(state => state.loggedUser)
+  const [ sign, setSign ] = useState('')
 
   useEffect(() => {
     dispatch(getCategories())
@@ -24,29 +22,18 @@ function Landing() {
     backgroundSize: 'cover',
   }
 
-  // function loginChange(e) {
-  //   setUserLogin({...userLogin, [e.target.name]:e.target.value})
-  // }
-  // function signUpChange(e) {
-  //   setUserSignup({...userSignup, [e.target.name]:e.target.value})
-  // }
-
-  // function handleLogin(e) {
-  //   e.preventDefault()
-  //   dispatch(login(userLogin))
-  //   setUserLogin({email: '', password: ''})
-  // }
-
-  // function handleSignUp(e) {
-  //   e.preventDefault()
-  //   dispatch(signUp(userSignup))
-  //   setUserSignup({email: '', password: ''})
-  // }
-
   function handleLogout(e) {
     e.preventDefault()
     dispatch(logout())
     localStorage.removeItem("user")
+  }
+
+  function showLogin() {
+    setSign('login')
+  }
+
+  function showSignup() {
+    setSign('signup')
   }
 
   return (
@@ -56,20 +43,34 @@ function Landing() {
           <h1 className="font-bold text-3xl p-6">CodeCamp</h1>
         </div>
         <div className="p-16 grid justify-items-center" >
-
           {/* Login form */}
           <div>
-            {!localStorage.getItem("user")?
+            {sign === '' &&
+            <div className='flex justify-center gap-10 bg-slate-500'>
+              <button onClick={showLogin} className='box-border w-40 bg-amber-700 text-white p-2 rounded-xl'>Login</button>
+              <button onClick={showSignup} className='box-border w-40 bg-amber-700 text-white p-2 rounded-xl'>Sign Up</button>
+            </div>
+            }
+            {sign === 'login' &&
+              <div>
+                <Login/>
+                {/* <button onClick={emptyLogin} className='box-border w-40 bg-amber-700 text-white p-2 rounded-xl'>Login</button> */}
+              </div>
+            }
+            {sign === 'signup' &&
+              <Signup/>
+            }
+            {/* {!localStorage.getItem("user")?
             <Login/>
             :<button className="box-border w-40 bg-amber-500 text-white p-2 rounded-xl" onClick={handleLogout}>
               Logout
             </button>
-            }
+            } */}
           </div>
           <br />
 
           {/* SignUp Form */}
-          <Signup/>
+          {/* <Signup/> */}
           <br />
           <NavLink to='/home'>
             <div className="box-border w-40 bg-amber-900 text-white p-2 rounded-xl">
