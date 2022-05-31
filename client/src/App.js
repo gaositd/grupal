@@ -11,6 +11,7 @@ import Details from './components/Details/Details';
 import CreateCategory from './components/CreateCategory/CreateCategory';
 import NavBar from './components/NavBar/NavBar';
 import { useSelector } from 'react-redux';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
           <Route path='/home' element={<Home/>}/>
           <Route path='/details/:id' element={<Details/>}/>
           <Route path='/admin' element={<CreateCategory/>}/>
-          {/* <Route pathelement={<NotFound/>}/> */}
+          <Route path='*' element={<NotFound/>}/>
         </Routes>
       </div>
     )
@@ -43,7 +44,7 @@ function App() {
         <Route path='/home' element={<Home/>}/>
         <Route path='/details/:id' element={<Details/>}/>
         {/* <Route path='/admin' element={<CreateCategory/>}/> */}
-        {/* <Route pathelement={<NotFound/>}/> */}
+        <Route path='*' element={<NotFound/>}/>
       </Routes>
     </div>
   );
