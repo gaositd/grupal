@@ -3,7 +3,7 @@ const router = Router();
 const { v4: uuidv4, validate } = require("uuid");
 const { Op } = require("sequelize");
 //const { getProduct, getProducts, createProduct, updateProduct, deleteProduct } = require("../controllers/product");
-const { Product, Category } = require("../db.js");
+const { Product, Category,User,Review } = require("../db.js");
 const {createReview}=require('../controllers/controllers')
 
 
