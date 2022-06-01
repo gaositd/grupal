@@ -3,18 +3,35 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
-const navigation = [
-  { name: 'Landing', href: '/', current: true },
-  { name: 'Home', href: '/home', current: false },
-  { name: 'About', href: '/about', current: false },
-  { name: 'Admin', href: '/admin', current: false },
-]
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function NavBarBro() {
+
+  let navigation = [
+    { name: 'Landing', href: '/', current: true },
+    { name: 'Home', href: '/home', current: false },
+    { name: 'About', href: '/about', current: false },
+    { name: 'Cart', href: '/cart', current: false },
+    { name: 'Admin', href: '/admin', current: false },
+  ]
+
+  function setActive(e) {
+    console.log(e.target.key)
+    navigation = navigation.map(object => {
+      if (object.name === e.target.key) {
+        // 👇️ change value of name property
+        console.log('El que tiene que ser true: ',object)
+        return {...object, current: 'true'};
+      } else {
+        console.log('Los que tienen que ser false: ',object)
+        return {...object, current: 'false'}
+      }
+    });
+    console.log('Navi: ',navigation)
+  }
+
   return (
     <Disclosure as="nav" className="bg-gray-800 mb-5">
       {({ open }) => (
@@ -56,6 +73,7 @@ export default function NavBarBro() {
                           'px-3 py-2 rounded-md text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
+                        onClick={e => setActive(e)}
                       >
                         {item.name}
                       </a>
