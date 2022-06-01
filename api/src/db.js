@@ -7,23 +7,26 @@ const { userInfo } = require('os');
 
 
 
-const DB_USER = 'postgres'
-const DB_PASSWORD = 'nutertools11'
-const DB_HOST = 'localhost'
-const DB_NAME = 'marketplace'
 
-console.log(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`);
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-  {
-    logging: false, // set to console.log to see the raw SQL queries
-    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-  }
-);
-// console.log(DB_NAME, DB_USER, DB_PASSWORD,DB_HOST,DB_DIALECT)
-// const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-//   host: process.env.DB_HOST,
-//   dialect: process.env.DB_DIALECT/* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
-// });
+
+// const DB_USER = 'postgres'
+// const DB_PASSWORD = 'nutertools11'
+// const DB_HOST = 'localhost'
+// const DB_NAME = 'marketplace'
+
+// console.log(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`);
+// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+//   {
+//     logging: false, // set to console.log to see the raw SQL queries
+//     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+//   }
+// );
+console.log(DB_NAME, DB_USER, DB_PASSWORD,DB_HOST,DB_DIALECT)
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+  host: DB_HOST,
+  dialect: DB_DIALECT/* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
+});
+
 
 const basename = path.basename(__filename);
 
