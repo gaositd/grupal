@@ -11,21 +11,32 @@ import Details from './components/Details/Details';
 import CreateCategory from './components/CreateCategory/CreateCategory';
 import NavBar from './components/NavBar/NavBar';
 import ProductCreationForm from './components/ProductCreationForm/ProductCreationForm'
+import { useSelector } from 'react-redux';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
 
-  /* To integrate with Catalogo 
-  const [loading, setLoading] = useState(false);
-  const [id, setId] = useState() // For Details
-
-  function handleDetails(id) {
-    setLoading(true)
-    setId(id)
-    setLoading(false)
-  } 
-  */
+  const loggedUser = useSelector(state => state.loggedUser)
+  if(loggedUser.email) localStorage.setItem("user", loggedUser.email)
+  console.log('Local storage user: ',localStorage.getItem("user"))
 
   const {pathname} = useLocation()
+
+  if(localStorage.getItem("user") === 'santi@mail.com') {
+    return (
+      <div className="App">
+        {pathname === '/'?null:<NavBar/>}
+        <Routes>
+          <Route path='/' element={<Landing/>}/>
+          <Route path='/home' element={<Home/>}/>
+          <Route path='/details/:id' element={<Details/>}/>
+          <Route path='/admin' element={<CreateCategory/>}/>
+          <Route path='*' element={<NotFound/>}/>
+        </Routes>
+      </div>
+    )
+  }
+
   return (
     <div className="App">
       {pathname === '/'?null:<NavBar/>}
@@ -36,6 +47,8 @@ function App() {
         <Route path='/admin' element={<CreateCategory/>}/>
         <Route path='/creationform' element={<ProductCreationForm/>}/>
         {/* <Route pathelement={<NotFound/>}/> */}
+        {/* <Route path='/admin' element={<CreateCategory/>}/> */}
+        <Route path='*' element={<NotFound/>}/>
       </Routes>
     </div>
   );

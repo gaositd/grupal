@@ -1,4 +1,4 @@
-export const validate = (input) => {
+export const validate = (input) => { //create category validation
   let errors = {}
 
   if(!input.id) errors.id = 'Must have an id'
@@ -8,6 +8,6 @@ export const validate = (input) => {
   if(!pattern.test(input.name)) errors.name = 'Cannot contain special characters'
 
   if(!input.description) errors.description = 'Must have a description'
-  
+
   return errors
 }
