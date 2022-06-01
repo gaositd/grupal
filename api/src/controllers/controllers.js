@@ -437,6 +437,8 @@ async function createReview(req, res) {
     } catch (error) {
         res.send(`Error: ${error}`)
     }
+}
+
 
 module.exports = {
     chargecategories,
