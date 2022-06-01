@@ -2,8 +2,15 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const { userInfo } = require('os');
+const { DB_USER ,DB_PASSWORD ,DB_HOST,DB_NAME,DB_DIALECT } = process.env;
+
+
+
+
+
 // const DB_USER = 'postgres'
-// const DB_PASSWORD = 'ONAI2105'
+// const DB_PASSWORD = 'nutertools11'
 // const DB_HOST = 'localhost'
 // const DB_NAME = 'marketplace'
 
@@ -14,10 +21,13 @@ const path = require('path');
 //     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 //   }
 // );
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-  host: process.env.DB_HOST,
-  dialect: process.env.DB_DIALECT/* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
+console.log(DB_NAME, DB_USER, DB_PASSWORD,DB_HOST,DB_DIALECT)
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+  host: DB_HOST,
+  dialect: DB_DIALECT/* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
 });
+
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -45,13 +55,24 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Category, Product, User } = sequelize.models;
+const { Category, Product, User, Review, User_product, OrdersHead } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
 Product.belongsToMany(Category, { through: "productTOcategory" });
 Category.belongsToMany(Product, { through: "productTOcategory" });
+
+User.hasMany(Review, { foreignKey: 'userId' })
+Review.belongsTo(User)
+
+User.belongsToMany(Product, { through: User_product })
+Product.belongsToMany(User, { through: User_product })
+
+Product.hasMany(Review, { foreignKey: 'productId' })
+Review.belongsTo(Product)
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

@@ -1,0 +1,22 @@
+.container {
+  margin-top: 50px;
+}
+
+.lilcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.dalebro {
+  width: 200px;
+  border: solid 1px blue;
+}
+
+.create {
+  width: 200px;
+  margin-top: 20px;
+  border: solid 1px green;
+  border-radius: 15px;
+}

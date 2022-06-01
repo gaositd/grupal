@@ -20,10 +20,15 @@
 
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const { chargecategories, chargeproducts, chargeusers, chargereviews } = require('./src/controllers/controllers')
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
     console.log("%s listening at 3001"); // eslint-disable-line no-console
+    chargecategories();
+    chargeusers();
+    chargeproducts();
+    chargereviews()
   });
 });
