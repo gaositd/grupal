@@ -35,6 +35,7 @@ function Landing() {
   function showSignup() {
     setSign('signup')
   }
+  console.log('Logged user: ',localStorage.user)
 
   return (
     <div className="grid grid-cols-3 gap-4 w-full h-screen">
@@ -43,35 +44,6 @@ function Landing() {
           <h1 className="font-bold text-3xl p-6">CodeCamp</h1>
         </div>
         <div className="p-16 grid justify-items-center" >
-          {/* Login form */}
-          <div>
-            {sign === '' &&
-            <div className='flex justify-center gap-10 bg-slate-500'>
-              <button onClick={showLogin} className='box-border w-40 bg-amber-700 text-white p-2 rounded-xl'>Login</button>
-              <button onClick={showSignup} className='box-border w-40 bg-amber-700 text-white p-2 rounded-xl'>Sign Up</button>
-            </div>
-            }
-            {sign === 'login' &&
-              <div>
-                <Login/>
-                {/* <button onClick={emptyLogin} className='box-border w-40 bg-amber-700 text-white p-2 rounded-xl'>Login</button> */}
-              </div>
-            }
-            {sign === 'signup' &&
-              <Signup/>
-            }
-            {/* {!localStorage.getItem("user")?
-            <Login/>
-            :<button className="box-border w-40 bg-amber-500 text-white p-2 rounded-xl" onClick={handleLogout}>
-              Logout
-            </button>
-            } */}
-          </div>
-          <br />
-
-          {/* SignUp Form */}
-          {/* <Signup/> */}
-          <br />
           <NavLink to='/home'>
             <div className="box-border w-40 bg-amber-900 text-white p-2 rounded-xl">
               Enter as guest
@@ -79,9 +51,35 @@ function Landing() {
           </NavLink>
           <br />
           <br />
-          <NavLink to='/home' className="border-2 w-40 border-red-900 rounded-xl">
-              Admin site
-          </NavLink>
+          <br />
+          <br />
+          <div>
+            {sign === '' &&
+            <div className='flex justify-center gap-10'>
+              {!localStorage.getItem("user")?
+                <button onClick={showLogin} className='box-border w-40 bg-amber-700 text-white p-2 rounded-xl'>Login</button>
+              :<button className="box-border w-40 bg-amber-500 text-white p-2 rounded-xl" onClick={handleLogout}>
+                Logout
+              </button>
+              }
+              <button onClick={showSignup} className='box-border w-40 bg-amber-700 text-white p-2 rounded-xl'>Sign Up</button>
+            </div>
+            }
+            {sign === 'login' &&
+              <div>
+                <Login/>
+                <br />
+                <button onClick={() => setSign('')} className='box-border w-20 h-10 bg-amber-600 text-xs text-white rounded-xl'>Volver</button>
+              </div>
+            }
+            {sign === 'signup' &&
+              <div>
+                <Signup/>
+                <br />
+                <button onClick={() => setSign('')} className='box-border w-20 h-10 bg-amber-600 text-xs text-white rounded-xl'>Volver</button>
+              </div>
+            }
+          </div>
         </div>
         <br />
         <br />
