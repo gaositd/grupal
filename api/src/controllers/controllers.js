@@ -409,7 +409,7 @@ function chargecategories() {
 function chargeproducts() {
     productsdb.forEach(async (product) => {
         const productCreated = await Product.create({
-            id: uuidv4(),
+            id: product.id,
             name: product.name,
             description: product.description,
             image: product.image,
@@ -439,22 +439,7 @@ async function createReview(req, res) {
     }
 }
 
-async function createReview(req, res) {
-    try {
-        if (req.body.reviewDescription !== false) {
-            await Review.create({
-                description: req.body.reviewDescription,
-                ranking: req.body.reviewRanking,
-                userId: req.body.userId,
-                productId: req.body.productId
-            })
-            res.json("Se creo el review")
-        }
-    } catch (error) {
-        res.send(`Error: ${error}`)
-    }
 
-}
 
 module.exports = {
     chargecategories,

@@ -29,6 +29,6 @@ conn.sync({ force: true }).then(() => {
     chargecategories();
     chargeusers();
     chargeproducts();
-    // chargereviews()
+    chargereviews()
   });
 });
