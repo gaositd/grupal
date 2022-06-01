@@ -15,12 +15,15 @@ export default function Login() {
     setUserLogin({...userLogin, [e.target.name]: e.target.value})
   }
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault()
     if(Object.keys(errors).length) {
       return alert('Please fill the right way')
     }
-    dispatch(login(userLogin))
+    await dispatch(login(userLogin))
+    if(localStorage.user) {
+      navigate('/home')
+    }
     setUserLogin({email: '', password: ''})
   }
 

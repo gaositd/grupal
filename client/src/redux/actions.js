@@ -13,7 +13,7 @@ export const LOGOUT = "LOGOUT";
 
 export const getProducts = () => {
   return function(dispatch){
-    return axios.get(`http://localhost:3001/product/all`)
+    return axios.get(`http://localhost:3006/product/all`)
       .then(resp => dispatch({type: GET_PRODUCTS, payload: resp.data}))
       .catch(error => alert(error))
   }
@@ -21,7 +21,7 @@ export const getProducts = () => {
 
 export const getProductById = (id) => {
   return function(dispatch){
-    return axios.get(`http://localhost:3001/product/${id}`)
+    return axios.get(`http://localhost:3006/product/${id}`)
       .then(resp => dispatch({type: GET_PRODUCT_ID, payload: resp.data}))
       .catch(error => alert(error))
   }
@@ -34,7 +34,7 @@ export const getProductById = (id) => {
 
 export function byName(name) {
   return function (dispatch) {
-    return axios.get(`http://localhost:3001/product/name?name=${name}`)
+    return axios.get(`http://localhost:3006/product/name?name=${name}`)
     .then(resp => dispatch({type: BY_NAME, payload: resp.data}))
     .catch(error => alert(error))
   }
@@ -56,7 +56,7 @@ export function filterByPrice (optionSelected) {
 
 export function createCategory(category) {
   return function(){
-      return axios.post("http://localhost:3001/category", category)
+      return axios.post("http://localhost:3006/category", category)
           .then(alert('Category created successfully!'))
           .catch(error => console.log('El error en cuestion: ',error))
   };
@@ -64,7 +64,7 @@ export function createCategory(category) {
 
 export const getCategories = () => {
   return function(dispatch){
-    return axios.get(`http://localhost:3001/category`)
+    return axios.get(`http://localhost:3006/category`)
       .then(resp => dispatch({type: GET_CATEGORIES, payload: resp.data}))
       .catch(error => alert(error))
   }
@@ -79,7 +79,7 @@ export const pagination = (pageNumber) => {
 
 export function login(user) {
   return function(dispatch){
-      return axios.post("http://localhost:3001/user/login", user)
+      return axios.post("http://localhost:3006/user/login", user)
           .then(resp => dispatch({type: LOGIN, payload: resp.data}))
           .catch(error => console.log('El error en cuestion: ',error))
   };
@@ -93,7 +93,7 @@ export function logout() {
 
 export function signUp(user) {
   return function(){
-      return axios.post("http://localhost:3001/user/signup", user)
+      return axios.post("http://localhost:3006/user/signup", user)
           .then(resp => {
             console.log(resp)
             if(typeof(resp.data) === 'string') alert(resp.data)

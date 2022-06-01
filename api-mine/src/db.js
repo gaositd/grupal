@@ -6,7 +6,7 @@ const path = require('path');
 // require('dotenv').config();
 
 const DB_USER = 'postgres'
-const DB_PASSWORD = '153624San.'
+const DB_PASSWORD = 'bc548'
 const DB_HOST = 'localhost'
 const DB_NAME = 'marketplace'
 

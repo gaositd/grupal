@@ -15,7 +15,7 @@ const initialState={
   filteredProducts: [],
   productDet: {},
   pagination: 0,
-  loggedUser: {}
+  loggedUser: undefined
 }
 
 export function rootReducer(state = initialState, { type, payload }){
@@ -57,9 +57,14 @@ export function rootReducer(state = initialState, { type, payload }){
     }
 
     case LOGIN:
-      if(Object.keys(payload).length) alert('Successfull login!')
-      if(!Object.keys(payload).length) alert('Wrong password')
-      return {...state, loggedUser: payload}
+      if(payload.email) {
+          alert('Successfull login!')
+          return {...state, loggedUser: payload.email}
+      }
+      else if(!payload) alert('No account linked to that mail')
+      else if(payload.wrongPass) alert(payload.wrongPass)
+      else alert('Something went wrong')
+      return {...state}
 
     case LOGOUT:
       return {...state, loggedUser: {}}
