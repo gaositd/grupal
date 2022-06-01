@@ -13,26 +13,20 @@ router.get("/", async(req,res)=>{
 
 
 router.post("/", async(req,res)=>{
-    const { 
-        NickName,
-        FullName,
-        Email,
-        Phone,
-        Image,
-        Address,
-        Birthdate,
-        Verify } = req.body;
-
+    const {id,password,usertype,nickName,fullName,mail,phone,address,birthdate,country,verify} = req.body;
     try {
         const user = await User.create({
-            NickName,
-            FullName,
-            Email,
-            Phone,
-            Image,
-            Address,
-            Birthdate,
-            Verify
+            id,
+            password,
+            usertype,
+            nickName,
+            fullName,
+            mail,
+            phone,
+            address,
+            birthdate,
+            country,
+            verify
 
           });
 
