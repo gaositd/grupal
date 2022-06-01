@@ -1,20 +1,23 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './Filters.module.css';
-import { filterByCategory, filterByPrice } from '../../redux/actions';
+import { filterByCategory, filterByPrice, pagination } from '../../redux/actions';
+
 
 function Filters() {
     const dispatch = useDispatch();
 
     const handleSelectCategory = (e) => {
+        dispatch(pagination(1))
         dispatch(filterByCategory(e.target.value))
     }
 
     const handleSelectPrice = (e) => {
+        dispatch(pagination(1))
         dispatch(filterByPrice(e.target.value))
     }
 
-    const categories = ['Carpinteria', 'Programacion'];
+    const categories = useSelector(state => state.categories);
 
     return(
         <nav>
@@ -32,7 +35,7 @@ function Filters() {
                 <option vallue='all'>All</option>
                 {categories ? categories.map((ctgry, i) => {
                     return (
-                        <option key={i} value={ctgry}>{ctgry}</option>
+                        <option key={i} value={ctgry.name}>{ctgry.name}</option>
                     )
                 }) : ''}
             </select>

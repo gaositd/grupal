@@ -3,13 +3,18 @@ import {
   GET_PRODUCT_ID,
   BY_NAME,
   FILTER_BY_CATEGORY,
-  FILTER_BY_PRICE
+  FILTER_BY_PRICE,
+  GET_CATEGORIES,
+  PAGINATION,
+  CREATE_PRODUCT,
 } from "./actions"
 
 const initialState={
   products: [],
   filteredProducts: [],
-  productDet: {}
+  productDet: {},
+  pagination: 0,
+  categories: [],
 }
 
 export function rootReducer(state = initialState, { type, payload }){
@@ -21,11 +26,17 @@ export function rootReducer(state = initialState, { type, payload }){
       return {...state, productDet: payload}
 
     case BY_NAME:
-      return {...state, products: payload}
+      return {...state, filteredProducts: payload}
 
     case FILTER_BY_CATEGORY:
         let filteredProd = state.products.filter(p => p.categories.includes(payload));
         return { ...state, filteredProducts: filteredProd }
+
+    case GET_CATEGORIES:
+      return {...state, categories: payload}
+
+    case PAGINATION:
+      return {...state, pagination: payload}
 
     case FILTER_BY_PRICE:
       {
@@ -44,6 +55,9 @@ export function rootReducer(state = initialState, { type, payload }){
         }
         return { ...state, filteredProducts: filtProducts }
       }
+    
+    case CREATE_PRODUCT:
+      return state
 
     default: return state;
   }

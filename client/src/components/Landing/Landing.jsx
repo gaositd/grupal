@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, } from 'react-redux';
+import { getCategories, getProducts } from '../../redux/actions';
 
 // import styles from './Landing.module.css';
 import bgimage from "./bg_landing.jpg";
 
 function Landing() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCategories())
+    dispatch(getProducts())
+  }, [dispatch])
+
   const backgroundImageStyle = {
     backgroundImage: `url(${bgimage})`,
     backgroundSize: 'cover',
