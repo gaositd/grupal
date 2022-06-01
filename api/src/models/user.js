@@ -26,7 +26,9 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     mail: {       //8
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
     },
     phone: {      //6
       type: DataTypes.STRING,
@@ -56,3 +58,4 @@ module.exports = (sequelize) => {
 
   );
 }
+
