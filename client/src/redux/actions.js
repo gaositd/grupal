@@ -12,7 +12,8 @@ export const CREATE_PRODUCT = "CREATE_PRODUCT";
 
 export const getProducts = () => {
   return function (dispatch) {
-    return axios.get(`http://localhost:3001/product/all`)
+    // return axios.get(`http://localhost:3001/product/all`)}
+    return axios.get(`/product/all`)
       .then(resp => dispatch({ type: GET_PRODUCTS, payload: resp.data }))
       .catch(error => alert(error))
   }
@@ -20,7 +21,8 @@ export const getProducts = () => {
 
 export const getProductById = (id) => {
   return function (dispatch) {
-    return axios.get(`http://localhost:3001/product/${id}`)
+    // return axios.get(`http://localhost:3001/product/${id}`)
+    return axios.get(`/product/${id}`)
       .then(resp => dispatch({ type: GET_PRODUCT_ID, payload: resp.data }))
       .catch(error => alert(error))
   }
@@ -33,7 +35,8 @@ export const getProductById = (id) => {
 
 export function byName(name) {
   return function (dispatch) {
-    return axios.get(`http://localhost:3001/product/name?name=${name}`)
+    // return axios.get(`http://localhost:3001/product/name?name=${name}`)
+    return axios.get(`/product/name?name=${name}`)
       .then(resp => dispatch({ type: BY_NAME, payload: resp.data }))
       .catch(error => alert(error))
   }
@@ -55,7 +58,8 @@ export function filterByPrice(optionSelected) {
 
 export function createCategory(category) {
   return function () {
-    return axios.post("http://localhost:3001/category", category)
+    // return axios.post("http://localhost:3001/category", category)
+    return axios.post("/category", category)
       .then(alert('Category created successfully!'))
       .catch(error => console.log('El error en cuestion: ', error))
   };
@@ -63,7 +67,8 @@ export function createCategory(category) {
 
 export const getCategories = () => {
   return function (dispatch) {
-    return axios.get(`http://localhost:3001/category`)
+    // return axios.get(`http://localhost:3001/category`)
+    return axios.get(`/category`)
       .then(resp => dispatch({ type: GET_CATEGORIES, payload: resp.data }))
       .catch(error => alert(error))
   }
@@ -81,7 +86,8 @@ export function createProduct(product) {
   return function (dispatch) {
     console.log(product)
     try {
-      return axios.post("http://localhost:3001/product", product)
+      // return axios.post("http://localhost:3001/product", product)
+      return axios.post("/product", product)
         .then(res => {
           alert('Product created Successfully');
           dispatch({
