@@ -77,11 +77,22 @@ export const pagination = (pageNumber) => {
   };
 };
 
+export function signUp(user) {
+  return function(){
+      return axios.post("http://localhost:3006/user/signup", user)
+          .then(resp => {
+            if(typeof(resp.data) === 'string') alert(resp.data)
+            else alert('Welcome to our platform')
+          })
+          .catch(error => console.log('Signup error',error))
+  };
+};
+
 export function login(user) {
   return function(dispatch){
       return axios.post("http://localhost:3006/user/login", user)
           .then(resp => dispatch({type: LOGIN, payload: resp.data}))
-          .catch(error => console.log('El error en cuestion: ',error))
+          .catch(error => console.log('Login error: ',error))
   };
 };
 
@@ -90,15 +101,3 @@ export function logout() {
     return dispatch({type: LOGOUT})
   }
 }
-
-export function signUp(user) {
-  return function(){
-      return axios.post("http://localhost:3006/user/signup", user)
-          .then(resp => {
-            console.log(resp)
-            if(typeof(resp.data) === 'string') alert(resp.data)
-            else alert('Welcome to our platform')
-          })
-          .catch(error => console.log('El error en cuestion: ',error))
-  };
-};
